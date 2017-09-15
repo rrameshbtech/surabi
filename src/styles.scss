@@ -1,3 +1,15 @@
 @import 'theme';
 @import '../node_modules/bootstrap/scss/bootstrap';
 @import '../node_modules/font-awesome/scss/font-awesome';
+
+@import url(https://fonts.googleapis.com/css?family=Audiowide);
+.logo{    
+    padding: 5px;
+    span{
+        font-family: 'Audiowide', cursive;
+    }
+}
+
+.footer{
+    text-align: center;    
+}
