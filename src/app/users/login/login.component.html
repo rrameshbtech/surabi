@@ -1,1 +1,19 @@
-<div class="middle-center"></div>
+<div class="login-pane">
+  <div>
+    <form class="form-signin">
+      <h2 class="form-signin-heading">Please sign in</h2>
+      <label for="txtUserId" class="sr-only">User Id</label>
+      <input type="text" id="txtUserId" class="form-control" placeholder="User Id" required="" 
+      [(ngModel)]="userId" autofocus="" minlength="8" maxlength="15">
+      <label for="txtPassword" class="sr-only">Password</label>
+      <input type="password" id="txtPassword" class="form-control" placeholder="Password" 
+      [(ngModel)]="password" required="" minlength="8" maxlength="15">
+      <div class="checkbox">
+        <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" (click)="signIn()" type="submit">Sign in</button>
+    </form>
+  </div>
+</div>
