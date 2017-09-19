@@ -18,7 +18,10 @@ export class LoginComponent implements OnInit {
   }
 
   signIn():void{
-    
+    this.userService.signIn(this.userId, this.password)
+    .subscribe((signInResponse) => {
+      console.log(signInResponse);
+    });
   }
 
 }
