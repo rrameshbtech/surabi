@@ -1,0 +1,23 @@
+{
+  "name": "users-api",
+  "version": "1.0.0",
+  "description": "contains apis for performing actions on user model",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "users",
+    "apis",
+    "add",
+    "get",
+    "update",
+    "delete",
+    "login"
+  ],
+  "author": "ramesh ramalingam",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
