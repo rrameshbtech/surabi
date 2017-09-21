@@ -1,6 +1,8 @@
+'use strict';
+
 var express = require('express');
 
-var userRouter = function () {
+var userRouter = function (User) {
 
   var router = express.Router();
 
