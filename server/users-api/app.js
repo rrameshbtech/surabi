@@ -24,6 +24,12 @@ usersApiApp.use(bodyParser.urlencoded({
 }));
 usersApiApp.use(bodyParser.json());
 
+usersApiApp.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 //import & assign the routes
 var userRouter = require('./routes/userRouter')(User),
   sessionRouter = require('./routes/sessionRouter')(Session, User);
@@ -39,4 +45,5 @@ usersApiApp.get('/', function getUserAPIDetails(req, res) {
 usersApiApp.listen(port, function usersApiAppListener() {
   console.log(`User API services are running at port ${port}`);
 });
+
 module.exports = usersApiApp;

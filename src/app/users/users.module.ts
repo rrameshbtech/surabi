@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { UsersRoutingModule } from './users-routing.module';
 import { LoginComponent } from './login/login.component';
 import { UserService } from './services/user.service';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { UserService } from './services/user.service';
 
     UsersRoutingModule
   ],
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, HomeComponent],
   providers: [
     UserService
   ]

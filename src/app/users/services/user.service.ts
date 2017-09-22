@@ -14,13 +14,12 @@ export class UserService {
   }
 
   signIn(userId: string, password: string): Observable<any> {
-    let headers: Headers = new Headers();
-    headers.append('userId', userId);
-    headers.append('password', password);
+    let body = {
+      userId: userId,
+      password: password
+    };
 
-    let options: any = { headers: headers };
-
-    return this.http.post(this.baseAPI + '/session', {}, options)
+    return this.http.post(this.baseAPI + 'sessions', body)
       .map((response: any) => response.json());
   }
 }

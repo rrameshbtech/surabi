@@ -1,27 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers:[UserService]
+  providers: [UserService]
 })
 export class LoginComponent implements OnInit {
 
-  userId:string;
-  password:string;
+  defaultRedirectUrl:string = './users/home';
+  userId: string = '';
+  password: string = '';
 
-  constructor(private userService:UserService) { }
+  constructor(private userService: UserService,
+    private router:Router) { }
 
   ngOnInit() {
   }
 
-  signIn():void{
+  signIn(): void {
     this.userService.signIn(this.userId, this.password)
-    .subscribe((signInResponse) => {
-      console.log(signInResponse);
-    });
+      .subscribe((signInResponse) => {
+        if (signInResponse.isAuthenticated) {
+          this.router.navigate([this.defaultRedirectUrl]);
+        } else {
+          console.log('User credentials are invalid.');
+        }
+      });
   }
 
 }
