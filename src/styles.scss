@@ -2,6 +2,7 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
 @import '../node_modules/font-awesome/scss/font-awesome';
 @import url(https://fonts.googleapis.com/css?family=Audiowide);
+@import '../node_modules/angular2-busy/build/style/busy.css';
 
 //Header Logo
 .logo {
@@ -11,12 +12,13 @@
   }
 }
 
+.page-header{
+  color: darkblue;
+  margin-bottom: 10px;
+}
+
 //Footer class
 .footer {
   text-align: center;
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  background-color: white;
+  background-color: white;  
 }

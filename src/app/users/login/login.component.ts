@@ -10,6 +10,7 @@ import { UserService } from '../services/user.service';
 })
 export class LoginComponent implements OnInit {
 
+  signInSubscriber: any;
   defaultRedirectUrl:string = './users/home';
   userId: string = '';
   password: string = '';
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   signIn(): void {
-    this.userService.signIn(this.userId, this.password)
+    this.signInSubscriber = this.userService.signIn(this.userId, this.password)
       .subscribe((signInResponse) => {
         if (signInResponse.isAuthenticated) {
           this.router.navigate([this.defaultRedirectUrl]);

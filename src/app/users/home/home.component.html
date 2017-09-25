@@ -1,3 +1,50 @@
-<p>
-  home works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <h1 class="col-sm-12 page-header">{{title}}</h1>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <form name="formUser">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="txtFirstName">First Name</label>
+              <input type="text" class="form-control" id="txtFirstName" name="txtFirstName" placeholder="First Name" [(ngModel)]="user.firstName">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="txtLastName">Last Name</label>
+              <input type="text" class="form-control" id="txtLastName" name="txtLastName" placeholder="Last Name" [(ngModel)]="user.lastName">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="txtEmail" class="col-form-label">Email Address</label>
+              <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="Email Address" [(ngModel)]="user.email">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="txtUserName" class="col-form-label">User Name</label>
+              <input type="text" class="form-control" id="txtUserName" name="txtUserName" placeholder="User Name" [(ngModel)]="user.userName">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-check-label"><input type="checkbox" class="form-check-input" [disabled]="isNewUser" id="chkIsActive" name="chkIsActive" [(ngModel)]="user.isActive"> Is Active</label>
+            </div>
+          </div>
+        </div>
+        <div class="from-group text-right">
+          <button class="btn btn-success" type="submit" name="saveButton">Save</button>
+          <button class="btn btn-danger" name="cancelButton">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

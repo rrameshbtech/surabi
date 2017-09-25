@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  isNewUser:boolean = true;
+  user: any = {};
+  title: string = 'Users';
   constructor() { }
 
   ngOnInit() {
   }
+
+  // isNewUser(): boolean {
+  //   return !this.user.id;
+  // }
 
 }
