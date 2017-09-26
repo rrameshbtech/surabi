@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  isNewUser:boolean = true;
   user: any = {};
   title: string = 'Users';
   constructor() { }
@@ -15,8 +14,25 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  // isNewUser(): boolean {
-  //   return !this.user.id;
-  // }
+  public isNewUser(): boolean {
+    return !this.user.id;
+  }
 
+  /**
+   * save current user information
+   */
+  public saveUser():void {
+    
+  }
+
+  isValidUserForm():boolean{
+    return true;
+  }
+
+  /**
+   * reset current user form and clear the current information
+   */
+  public resetUser():void {
+    
+  }
 }

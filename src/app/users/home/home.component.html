@@ -41,8 +41,8 @@
           </div>
         </div>
         <div class="from-group text-right">
-          <button class="btn btn-success" type="submit" name="saveButton">Save</button>
-          <button class="btn btn-danger" name="cancelButton">Cancel</button>
+          <button class="btn btn-success" type="submit" name="saveButton" (click)="saveUser()" >Save</button>
+          <button class="btn btn-danger" name="cancelButton" (click)="resetUser()">Cancel</button>
         </div>
       </form>
     </div>
