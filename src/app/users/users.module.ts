@@ -8,6 +8,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { LoginComponent } from './login/login.component';
 import { UserService } from './services/user.service';
 import { HomeComponent } from './home/home.component';
+import { UsersComponent } from './users.component';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { HomeComponent } from './home/home.component';
 
     UsersRoutingModule
   ],
-  declarations: [LoginComponent, HomeComponent],
+  declarations: [LoginComponent, HomeComponent, UsersComponent],
   providers: [
     UserService
   ]

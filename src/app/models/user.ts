@@ -1,4 +1,4 @@
-import { DataObject } from './dataObject';
+import { DataObject } from './data-object';
 
 export class User extends DataObject {
 

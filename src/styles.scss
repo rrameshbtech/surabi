@@ -1,6 +1,9 @@
 @import 'theme';
-@import '../node_modules/bootstrap/scss/bootstrap';
-@import '../node_modules/font-awesome/scss/font-awesome';
+// @import '../node_modules/font-awesome/scss/font-awesome';
+
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import '~@angular/material/prebuilt-themes/purple-green.css';
+
 @import url(https://fonts.googleapis.com/css?family=Audiowide);
 @import '../node_modules/angular2-busy/build/style/busy.css';
 
