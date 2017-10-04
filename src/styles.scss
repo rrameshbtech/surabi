@@ -1,27 +1,25 @@
 @import 'theme';
-// @import '../node_modules/font-awesome/scss/font-awesome';
+@import '../node_modules/font-awesome/scss/font-awesome';
 
-@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
-@import '~@angular/material/prebuilt-themes/purple-green.css';
+// @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 @import url(https://fonts.googleapis.com/css?family=Audiowide);
 @import '../node_modules/angular2-busy/build/style/busy.css';
 
-//Header Logo
-.logo {
-  padding: 5px;
-  span {
-    font-family: 'Audiowide', cursive;
-  }
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
 }
 
-.page-header{
-  color: #1e7e34;
-  margin-bottom: 10px;
+.fill-remaining {
+  flex: 1 1 auto;
 }
 
-//Footer class
-.footer {
-  text-align: center;
-  background-color: white;  
+.full-width{
+  width: 100%;
+}
+
+.mat-icon{
+  height: auto !important;
 }

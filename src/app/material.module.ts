@@ -1,26 +1,35 @@
 import { NgModule } from '@angular/core';
 import {
-  MdButtonModule,
-  MdMenuModule,
-  MdToolbarModule,
-  MdIconModule,
-  MdCardModule
+  MatButtonModule,
+  MatMenuModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatCardModule,
+  MatInputModule,
+  MatCheckboxModule,
+  NoConflictStyleCompatibilityMode
 } from '@angular/material';
 
 @NgModule({
   imports: [
-    MdButtonModule,
-    MdMenuModule,
-    MdToolbarModule,
-    MdIconModule,
-    MdCardModule
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatInputModule,
+    MatCheckboxModule,
+    NoConflictStyleCompatibilityMode
   ],
   exports: [
-    MdButtonModule,
-    MdMenuModule,
-    MdToolbarModule,
-    MdIconModule,
-    MdCardModule
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatInputModule,
+    MatCheckboxModule,
+    NoConflictStyleCompatibilityMode
   ]
 })
 export class MaterialModule { }

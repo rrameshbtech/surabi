@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+//import {FormControl, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -9,6 +10,9 @@ import { UserService } from '../services/user.service';
   providers: [UserService]
 })
 export class LoginComponent implements OnInit {
+
+  // userIdControl:FormControl = new FormControl('', [Validators.required]);
+  // passwordControl:FormControl = new FormControl('', [Validators.required]);
 
   signInSubscriber: any;
   defaultRedirectUrl:string = './users/home';
