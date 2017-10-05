@@ -1,23 +1,25 @@
 <div [ngBusy]="signInSubscriber"></div>
 
-<form class="form-signin" (submit)="signIn()">
-  <mat-card class="login-pane" >
-    <mat-card-title><mat-toolbar color="accent"> Please Sign In</mat-toolbar></mat-card-title>
+<form #signInForm="ngForm" class="form-signin" (submit)="signIn()">
+  <mat-card class="login-pane">
+    <mat-card-title>
+      <mat-toolbar color="accent"> Please Sign In</mat-toolbar>
+    </mat-card-title>
     <mat-card-content>
       <mat-form-field class="full-width">
-        <input type="text" #userIdControl="ngModel" matInput name="txtUserId" placeholder="User Name" [(ngModel)]="userId" autofocus="" minlength="8" maxlength="15"
-          required>
-          <mat-error *ngIf="userIdControl.errors.required">User name is required</mat-error>
+        <input type="text" matInput name="txtUserId" placeholder="User Name" [(ngModel)]="userId" autofocus="" maxlength="15" required
+          #userIdControl="ngModel">
+        <mat-error *ngIf="userIdControl.errors?.required">User name is required</mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input type="password" #passwordControl="ngModel" matInput name="txtPassword" class="form-control" placeholder="Password" [(ngModel)]="password" required
-          minlength="8" maxlength="15">
-          <mat-error *ngIf="passwordControl.errors.required  && (passwordControl.dirty || passwordControl.touched)">Password is required</mat-error>
+        <input type="password" matInput name="txtPassword" class="form-control" placeholder="Password" [(ngModel)]="password" required
+          maxlength="15" #passwordControl="ngModel">
+        <mat-error *ngIf="passwordControl.errors?.required">Password is required</mat-error>
       </mat-form-field>
       <mat-checkbox type="checkbox" value="remember-me"> Remember me</mat-checkbox>
     </mat-card-content>
     <mat-card-actions align="end">
-      <button mat-raised-button color="primary" type="submit">Sign in</button>
+      <button mat-raised-button color="primary" [disabled]="signInForm.form.invalid" type="submit">Sign in</button>
     </mat-card-actions>
   </mat-card>
 </form>
