@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BusyModule } from 'angular2-busy';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialModule } from '../material.module';
 import { UsersRoutingModule } from './users-routing.module';
 import { LoginComponent } from './login/login.component';
 import { UserService } from './services/user.service';
-import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
 import { UsersComponent } from './users.component';
 
 
@@ -20,13 +21,14 @@ import { UsersComponent } from './users.component';
     FormsModule,
     HttpModule,
     BusyModule,
+    FlexLayoutModule,
 
     MaterialModule,
     UsersRoutingModule
   ],
   declarations: [
-    LoginComponent, 
-    HomeComponent, 
+    LoginComponent,
+    UserComponent,
     UsersComponent
   ],
   providers: [

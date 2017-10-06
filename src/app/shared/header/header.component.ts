@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
 @Component({
-  selector: 'app-header',
+  selector: 'srb-shared-header',
   templateUrl: './header.component.html',
   styles: [
-    `//Header Logo
+    ` //Header Logo
       .logo {
         padding: 5px;
       }
@@ -17,9 +17,9 @@ import { environment } from '../../../environments/environment';
   ]
 })
 export class HeaderComponent implements OnInit {
-
-  baseUrl:string='';
-  constructor() { 
+  userMenu: any;
+  baseUrl= '';
+  constructor() {
     this.baseUrl = environment.baseUrl;
   }
 

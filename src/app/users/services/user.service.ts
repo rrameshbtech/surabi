@@ -7,14 +7,14 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class UserService {
 
-  baseAPI: string = '';
+  baseAPI = '';
 
   constructor(private http: Http) {
     this.baseAPI = environment.usersAPI;
   }
 
   signIn(userId: string, password: string): Observable<any> {
-    let body = {
+    const body = {
       userId: userId,
       password: password
     };

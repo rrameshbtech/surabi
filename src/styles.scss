@@ -1,12 +1,9 @@
 @import 'theme';
 @import '../node_modules/font-awesome/scss/font-awesome';
-
 // @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-
 @import url(https://fonts.googleapis.com/css?family=Audiowide);
 @import '../node_modules/angular2-busy/build/style/busy.css';
-
 body {
   margin: 0;
   font-family: Roboto, sans-serif;
@@ -16,10 +13,23 @@ body {
   flex: 1 1 auto;
 }
 
-.full-width{
+.full-width {
   width: 100%;
 }
 
-.mat-icon{
+.full-view-height {
+  height: 100vh;
+}
+
+.command-button {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.mat-card-title.no-gutter {
+  margin: -24px -24px auto -24px !important;
+}
+
+.mat-icon {
   height: auto !important;
 }

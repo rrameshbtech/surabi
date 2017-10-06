@@ -1,26 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-//import {FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'srb-users-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   providers: [UserService]
 })
 export class LoginComponent implements OnInit {
 
-  // userIdControl:FormControl = new FormControl('', [Validators.required]);
-  // passwordControl:FormControl = new FormControl('', [Validators.required]);
-
   signInSubscriber: any;
-  defaultRedirectUrl:string = './users/home';
-  userId: string = '';
-  password: string = '';
+  defaultRedirectUrl = './users/home';
+  userId = '';
+  password = '';
 
   constructor(private userService: UserService,
-    private router:Router) { }
+    private router: Router) { }
 
   ngOnInit() {
   }

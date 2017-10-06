@@ -1,25 +1,26 @@
 <div [ngBusy]="signInSubscriber"></div>
-
-<form #signInForm="ngForm" class="form-signin" (submit)="signIn()">
-  <mat-card class="login-pane">
-    <mat-card-title>
-      <mat-toolbar color="accent"> Please Sign In</mat-toolbar>
-    </mat-card-title>
-    <mat-card-content>
-      <mat-form-field class="full-width">
-        <input type="text" matInput name="txtUserId" placeholder="User Name" [(ngModel)]="userId" autofocus="" maxlength="15" required
-          #userIdControl="ngModel">
-        <mat-error *ngIf="userIdControl.errors?.required">User name is required</mat-error>
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <input type="password" matInput name="txtPassword" class="form-control" placeholder="Password" [(ngModel)]="password" required
-          maxlength="15" #passwordControl="ngModel">
-        <mat-error *ngIf="passwordControl.errors?.required">Password is required</mat-error>
-      </mat-form-field>
-      <mat-checkbox type="checkbox" value="remember-me"> Remember me</mat-checkbox>
-    </mat-card-content>
-    <mat-card-actions align="end">
-      <button mat-raised-button color="primary" [disabled]="signInForm.form.invalid" type="submit">Sign in</button>
-    </mat-card-actions>
-  </mat-card>
-</form>
+<div class="full-width full-view-height" fxLayout="column" fxLayoutAlign="center center">
+  <form #signInForm="ngForm" class="form-signin" (submit)="signIn()">
+    <mat-card class="login-pane" fxFlex fxFlexAlign="center">
+      <mat-card-title class="no-gutter">
+        <mat-toolbar color="accent" class="login-title"> Please Sign In</mat-toolbar>
+      </mat-card-title>
+      <mat-card-content>
+        <mat-form-field class="full-width">
+          <input type="text" matInput name="txtUserId" placeholder="User Name" [(ngModel)]="userId" autofocus="" maxlength="15" required
+            #userIdControl="ngModel">
+          <mat-error *ngIf="userIdControl.errors?.required">User name is required</mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input type="password" matInput name="txtPassword" class="form-control" placeholder="Password" [(ngModel)]="password" required
+            maxlength="15" #passwordControl="ngModel">
+          <mat-error *ngIf="passwordControl.errors?.required">Password is required</mat-error>
+        </mat-form-field>
+        <mat-checkbox type="checkbox" value="remember-me"> Remember me</mat-checkbox>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" class="command-button" [disabled]="signInForm.form.invalid" type="submit">Sign in</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

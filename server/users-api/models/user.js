@@ -3,13 +3,22 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var userModel = new Schema({
-  userId: {
+  userName: {
     type: String
   },
   firstName: {
     type: String
   },
   lastName: {
+    type: String
+  },
+  email: {
+    type: String
+  },
+  phoneNumber: {
+    type: String
+  },
+  address: {
     type: String
   },
   password: {

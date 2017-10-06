@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-footer',
+  selector: 'srb-shared-footer',
   templateUrl: './footer.component.html',
-  styles: [`
-    //Footer class
-    .footer {
+  styles: [`.footer {
       text-align: center;
       background-color: white;
+      font-size: .8em;
+      padding-top: 10px;
+      border-top: #bbb 1px solid;
+      margin-top: 10px;
     };
     `
   ]

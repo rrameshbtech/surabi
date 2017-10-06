@@ -1,0 +1,75 @@
+<div [ngBusy]="saveUserSubscriber"></div>
+
+<div class="full-width" fxLayout="column" fxLayoutAlign="center center">
+  <form #userForm="ngForm" class="user-pane" (submit)="saveUser()">
+
+    <mat-card fxFlex fxFlexAlign="center">
+
+      <mat-card-title class="no-gutter">
+        <mat-toolbar color="accent" class="user-title">Create User</mat-toolbar>
+      </mat-card-title>
+
+      <mat-card-content>
+        <div fxLayout="column" fxLayoutGap="10px" fxLayoutGap.lt-md="0px">
+          <div fxFlex>
+            <mat-form-field class="full-width">
+              <input type="text" matInput name="txtUserName" placeholder="User Name" [(ngModel)]="user.userName" autofocus="" maxlength="15"
+                required minlength="8" #userNameControl="ngModel">
+              <mat-error *ngIf="userNameControl.errors?.required">User name is required.</mat-error>
+              <mat-error *ngIf="userNameControl.errors?.minlength">User name must have more than 7 chars.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout fxLayout.lt-md="column" fxLayoutGap="10px" fxLayoutGap.lt-md="0px">
+          <div fxFlex="50">
+            <mat-form-field>
+              <input type="text" matInput name="txtFirstName" placeholder="First Name" [(ngModel)]="user.firstName" maxlength="15" required
+                minlength="8" #firstNameControl="ngModel">
+              <mat-error *ngIf="firstNameControl.errors?.required">First name is required.</mat-error>
+              <mat-error *ngIf="firstNameControl.errors?.minlength">First name must have more than 7 chars.</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50">
+            <mat-form-field>
+              <input type="text" matInput name="txtLastName" placeholder="Last Name" [(ngModel)]="user.lastName" maxlength="15">
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout fxLayout.lt-md="column" fxLayoutGap="10px" fxLayoutGap.lt-md="0px">
+          <div fxFlex="50%">
+            <mat-form-field>
+              <input type="text" matInput name="txtEmail" placeholder="Email Address" [(ngModel)]="user.email" required #emailControl="ngModel"
+                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
+              <mat-error *ngIf="emailControl.errors?.required">Email address is required.</mat-error>
+              <mat-error *ngIf="emailControl.errors?.pattern">Email address is not valid.</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%">
+            <mat-form-field>
+              <input type="text" matInput name="txtPhoneNumber" pattern="(\+91(-)?|91(-)?|0(-)?)?(9|8|7)[0-9]{9}" placeholder="Phone Number"
+                [(ngModel)]="user.phoneNumber" required #phoneNumberControl="ngModel">
+              <mat-error *ngIf="phoneNumberControl.errors?.required">Phone number is required.</mat-error>
+              <mat-error *ngIf="phoneNumberControl.errors?.pattern">Phone number is not valid.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout fxLayout.lt-md="column" fxLayoutGap="10px" fxLayoutGap.lt-md="0px">
+          <div fxFlex="50%">
+            <mat-form-field fxFlex="100%">
+              <textarea matInput name="txtAddress" placeholder="Address" [(ngModel)]="user.address"></textarea>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" fxFlexAlign="center">
+            <mat-checkbox type="checkbox" [disabled]="isNewUser()" name="isActiveCheck" [(ngModel)]="user.isActive"> Is Active?</mat-checkbox>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button class="command-button" color="primary" [disabled]="userForm.form.invalid" type="submit">Save</button>
+        <button mat-raised-button class="command-button" color="warn" type="reset" (click)="resetUser()">Reset</button>
+      </mat-card-actions>
+
+    </mat-card>
+  </form>
+</div>

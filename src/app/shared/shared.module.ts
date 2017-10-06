@@ -13,10 +13,10 @@ import { MaterialModule } from '../material.module';
     MaterialModule
   ],
   declarations: [
-    HeaderComponent, 
+    HeaderComponent,
     FooterComponent
   ],
-  exports:[
+  exports: [
     HeaderComponent,
     FooterComponent
   ]
