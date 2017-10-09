@@ -27,6 +27,20 @@ var userModel = new Schema({
   isActive: {
     type: Boolean,
     default: true
+  },
+  createdBy: {
+    type: String
+  },
+  createdOn: {
+    type: Date,
+    default: Date.now
+  },
+  updatedBy: {
+    type: String
+  },
+  updatedOn: {
+    type: Date,
+    default: Date.now
   }
 });
 
