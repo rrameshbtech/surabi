@@ -1,58 +1,88 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/finally';
 
 import { User } from '../../models/user.model';
+import { ExceptionService } from '../../shared/exception.service';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class UserService {
 
+  dataChange: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
   baseAPI = '';
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient
+  , private exceptionService: ExceptionService) {
     this.baseAPI = environment.usersAPI;
   }
 
-  get(query: any): Observable<User[]> {
-    let queryString = '';
+  getUsers(query: any
+    , sort: string
+    , order: string
+    , page: number): Observable<User[]> {
+    const queryParams = new HttpParams();
 
-    for (let field in query) {
-      queryString += '${field}=${query[field]}';
+    for (const field in query) {
+      if (query.hasOwnProperty(field)) {
+        queryParams.set(field, query[field]);
+      }
     }
+    queryParams.set('sort', sort);
+    queryParams.set('direction', order);
+    queryParams.set('page', page.toString());
 
-    return this.http.get('${this.baseAPI}?${queryString}')
-      .map((response: any) => response.json());
+    return this.http
+      .get<User[]>(this.baseAPI, { params: queryParams })
+      .catch(this.exceptionService.handleBadResponse);
   }
 
-  getById(id: string): Observable<User> {
-    return this.http.get(this.baseAPI + id)
-      .map((response: any) => response.json());
+  getUser(id: string): Observable<User> {
+    return this.http
+      .get<User>(this.baseAPI + id)
+      .catch(this.exceptionService.handleBadResponse);
   }
 
-  create(user: User): Observable<User> {
-    return this.http.post(this.baseAPI, user)
-      .map((response: any) => response.json());
+  addUser(user: User): Observable<User> {
+    const body = user;
+    return this.http
+      .post<User>(this.baseAPI, body)
+      .catch(this.exceptionService.handleBadResponse)
+      .finally(() => {
+        this.dataChange.next([]);
+      });
   }
 
-  update(user: User): Observable<User> {
-    return this.http.put(this.baseAPI + user._id, user)
-      .map((response: any) => response.json());
+  updateUser(user: User): Observable<User> {
+    return this.http
+      .put<User>(this.baseAPI + user._id, user)
+      .catch(this.exceptionService.handleBadResponse)
+      .finally(() => {
+        this.dataChange.next([]);
+      });
   }
 
-  delete(id: string): Observable<any> {
-    return this.http.delete(this.baseAPI + id)
-      .map((response: any) => response.json());
+  deleteUser(user: User): Observable<any> {
+    return this.http
+      .delete(this.baseAPI + user._id)
+      .catch(this.exceptionService.handleBadResponse)
+      .finally(() => {
+        this.dataChange.next([]);
+      });;
   }
 
-  // signIn(userName: string, password: string): Observable<any> {
-  //   const body = {
-  //     userName: userName,
-  //     password: password
-  //   };
+  //Todo: move to separate service
+  signIn(userName: string, password: string): Observable<any> {
+    const body = {
+      userName: userName,
+      password: password
+    };
 
-  //   return this.http.post(this.baseAPI + 'sessions', body)
-  //     .map((response: any) => response.json());
-  // }
+    return this.http.post(this.baseAPI + 'sessions', body)
+      .map((response: any) => response.json());
+  }
 }

@@ -7,7 +7,35 @@
   }
 }
 
+.user-table-pane {
+  max-width: 1000px;
+  width: 100%;
+  margin: 15px;
+  .mat-table {
+    width: 100%;
+  }
+}
+
 .user-title {
   color: white;
   font-weight: bold;
+}
+
+.mat-cell, .mat-header-cell {
+  margin-left: 5px;
+}
+
+.column-small {
+  max-width: 50px;
+  flex: 0 0 10%;
+}
+
+.column-medium {
+  max-width: 100px;
+  flex: 0 0 20%;
+}
+
+.column-large {
+  max-width: 250px;
+  flex: 0 0 30%;
 }

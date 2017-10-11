@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: UsersComponent,
-    children:[
+    children: [
       {
         path: 'login',
         component: LoginComponent
@@ -20,7 +20,7 @@ const routes: Routes = [
       }
     ]
   }
-  
+
 ];
 
 @NgModule({

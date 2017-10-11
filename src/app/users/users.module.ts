@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BusyModule } from 'angular2-busy';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -13,18 +13,22 @@ import { UserService } from './services/user.service';
 import { UserComponent } from './user/user.component';
 import { UsersComponent } from './users.component';
 
+import { SharedModule } from '../shared/shared.module';
+import { HttpResponseInterceptor } from '../shared/http-response-interceptor.service';
+
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     BusyModule,
     FlexLayoutModule,
 
     MaterialModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    SharedModule
   ],
   declarations: [
     LoginComponent,
@@ -32,7 +36,8 @@ import { UsersComponent } from './users.component';
     UsersComponent
   ],
   providers: [
-    UserService
+    UserService,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpResponseInterceptor, multi: true }
   ]
 })
 export class UsersModule { }

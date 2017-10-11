@@ -1,12 +1,11 @@
 <div [ngBusy]="saveUserSubscriber"></div>
 
 <div class="full-width" fxLayout="column" fxLayoutAlign="center center">
-  <form #userForm="ngForm" class="user-pane" (submit)="saveUser()">
+  <form #userForm="ngForm" class="user-pane" (ngSubmit)="saveUser(userForm)">
 
     <mat-card fxFlex fxFlexAlign="center">
-
       <mat-card-title class="no-gutter">
-        <mat-toolbar color="accent" class="user-title">Create User</mat-toolbar>
+        <mat-toolbar color="accent" class="user-title">{{mode}} User</mat-toolbar>
       </mat-card-title>
 
       <mat-card-content>
@@ -60,16 +59,67 @@
             </mat-form-field>
           </div>
           <div fxFlex="50%" fxFlexAlign="center">
-            <mat-checkbox type="checkbox" [disabled]="isNewUser()" name="isActiveCheck" [(ngModel)]="user.isActive"> Is Active?</mat-checkbox>
+            <mat-checkbox type="checkbox" [disabled]="mode==='Create'" name="isActiveCheck" [(ngModel)]="user.isActive"> Is Active?</mat-checkbox>
           </div>
         </div>
       </mat-card-content>
 
       <mat-card-actions align="end">
         <button mat-raised-button class="command-button" color="primary" [disabled]="userForm.form.invalid" type="submit">Save</button>
-        <button mat-raised-button class="command-button" color="warn" type="reset" (click)="resetUser()">Reset</button>
+        <button mat-raised-button class="command-button" color="warn" type="button" (click)="resetUser(userForm)">Reset</button>
       </mat-card-actions>
 
     </mat-card>
   </form>
+  <div fxFlex fxFlexAlign="center" class="user-table-pane mat-elevation-z8">
+    <mat-table #userTable [dataSource]="userDataSource" class="users-table" matSort matSortActive="created" matSortDisableClear
+      matSortDirection="asc">
+
+      <!-- User Name Column -->
+      <ng-container matColumnDef="userName">
+        <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.userName}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef ngClass="column-large"> Name </mat-header-cell>
+        <mat-cell *matCellDef="let user" ngClass="column-large">{{user.lastName}}, {{user.firstName}}</mat-cell>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+      </ng-container>
+
+      <!-- Phone Number Column -->
+      <ng-container matColumnDef="phoneNumber">
+        <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.phoneNumber}} </mat-cell>
+      </ng-container>
+
+      <!-- Is Active Column -->
+      <ng-container matColumnDef="isActive">
+        <mat-header-cell *matHeaderCellDef ngClass="column-small" align="center"> Is Active </mat-header-cell>
+        <mat-cell *matCellDef="let user" ngClass="column-small" align="center">
+          <mat-checkbox type="checkbox" [disabled]="true" [checked]="user.isActive"></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <!--Actions Column-->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef ngClass="column-medium"></mat-header-cell>
+        <mat-cell *matCellDef="let user" ngClass="column-medium">
+          <button mat-mini-fab (click)="editUser(user)" aria-label="Edit User"><mat-icon class="fa fa-pencil"></mat-icon></button>
+          <button mat-mini-fab color="warn" (click)="deleteUser(user)" aria-label="Delete User"><mat-icon class="fa fa-trash"></mat-icon></button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="userTableColumns"></mat-header-row>
+      <mat-row *matRowDef="let user; columns: userTableColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator [length]="userDataSource.totalUsers" [pageSize]="2">
+    </mat-paginator>
+  </div>
 </div>

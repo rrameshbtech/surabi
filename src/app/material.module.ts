@@ -7,6 +7,10 @@ import {
   MatCardModule,
   MatInputModule,
   MatCheckboxModule,
+  MatSnackBarModule,
+  MatTableModule,
+  MatSortModule,
+  MatPaginatorModule,
   NoConflictStyleCompatibilityMode
 } from '@angular/material';
 
@@ -19,6 +23,10 @@ import {
     MatCardModule,
     MatInputModule,
     MatCheckboxModule,
+    MatSnackBarModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
     NoConflictStyleCompatibilityMode
   ],
   exports: [
@@ -29,6 +37,10 @@ import {
     MatCardModule,
     MatInputModule,
     MatCheckboxModule,
+    MatSnackBarModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
     NoConflictStyleCompatibilityMode
   ]
 })

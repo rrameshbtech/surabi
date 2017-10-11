@@ -5,6 +5,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
 import { MaterialModule } from '../material.module';
+import { ExceptionService } from './exception.service';
+import { ToastService } from './toast.service';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { CommonDialogService } from './common-dialog.service';
 
 @NgModule({
   imports: [
@@ -14,11 +18,17 @@ import { MaterialModule } from '../material.module';
   ],
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ConfirmDialogComponent
   ],
   exports: [
     HeaderComponent,
     FooterComponent
+  ],
+  providers: [
+    ExceptionService,
+    ToastService,
+    CommonDialogService
   ]
 })
 export class SharedModule { }
