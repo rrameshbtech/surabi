@@ -44,17 +44,18 @@ export class UserDataSource extends DataSource<User>{
         return this.userService.getUsers({}
           , this.userTableSort.active
           , this.userTableSort.direction
-          , this.userTablePaginator.pageIndex);
+          , this.userTablePaginator.pageIndex
+          , this.userTablePaginator.pageSize);
       })
-      .map((users) => {
+      .map((searchResult) => {
         this.isLoadingUsers = false;
 
-        if (!users) {
+        if (!searchResult) {
           return [];
         }
 
-        this.totalUsers = users.length;
-        return users;
+        this.totalUsers = searchResult.totalRecords;
+        return searchResult.data;
       });
   }
 

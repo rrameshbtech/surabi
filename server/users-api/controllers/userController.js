@@ -8,30 +8,55 @@ var userController = function (User) {
 
   function getUsers(req, res) {
     var query = {},
-      fieldFields = [
+      searchableFields = [
         'userName',
         'firstName',
         'lastName',
         'isActive',
         'email',
-        'phoneNumber',
-        'address'
-      ];
+        'phoneNumber'
+      ],
+      page = req.query['page'] || 0,
+      pageSize = req.query['pagesize'] || 10,
+      sort = req.query['sort'] || null,
+      direction = req.query['direction'] || 'asc',
+      searchQuery = null;
 
     //build query
-    fieldFields.forEach(function (fieldName) {
+    searchableFields.forEach(function (fieldName) {
       if (req.query[fieldName.toLowerCase()]) {
         query[fieldName] = req.query[fieldName.toLowerCase()];
       }
     });
 
-    User.find(query, function (err, users) {
-      if (err)
-        res.status(500).send(err);
-      else {
-        res.json(users);
-      }
-    });
+
+    searchQuery = User.find(query)
+      .skip(page * pageSize)
+      .limit(+pageSize);
+
+    if (sort) {
+      var sortConfig = {};
+      sortConfig[sort] = direction
+      searchQuery = searchQuery.sort(sortConfig);
+    }
+
+    searchQuery.exec(
+      function (err, users) {
+        if (err)
+          res.status(500).send(err);
+        else {
+          User.count(query).exec(function (countErr, count) {
+            if (countErr) {
+              res.status(500).send(countErr);
+            } else {
+              res.json({
+                data: users,
+                totalRecords: count
+              });
+            }
+          });
+        }
+      });
   }
 
   function createUser(req, res) {

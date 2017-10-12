@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
 
 import { User } from '../../models/user.model';
+import { SearchResult } from '../../models/search-result.model';
 import { ExceptionService } from '../../shared/exception.service';
 import { environment } from '../../../environments/environment';
 
@@ -17,27 +18,30 @@ export class UserService {
   baseAPI = '';
 
   constructor(private http: HttpClient
-  , private exceptionService: ExceptionService) {
+    , private exceptionService: ExceptionService) {
     this.baseAPI = environment.usersAPI;
   }
 
   getUsers(query: any
     , sort: string
     , order: string
-    , page: number): Observable<User[]> {
-    const queryParams = new HttpParams();
+    , page: number
+    , pageSize: number): Observable<SearchResult<User>> {
+    let queryParams = new HttpParams();
 
     for (const field in query) {
       if (query.hasOwnProperty(field)) {
-        queryParams.set(field, query[field]);
+        queryParams = queryParams.append(field, query[field]);
       }
     }
-    queryParams.set('sort', sort);
-    queryParams.set('direction', order);
-    queryParams.set('page', page.toString());
+
+    queryParams = queryParams.append('sort', sort)
+      .set('direction', order)
+      .set('page', page.toString())
+      .set('pagesize', pageSize.toString());
 
     return this.http
-      .get<User[]>(this.baseAPI, { params: queryParams })
+      .get<SearchResult<User>>(this.baseAPI, { params: queryParams })
       .catch(this.exceptionService.handleBadResponse);
   }
 

@@ -72,24 +72,30 @@
     </mat-card>
   </form>
   <div fxFlex fxFlexAlign="center" class="user-table-pane mat-elevation-z8">
-    <mat-table #userTable [dataSource]="userDataSource" class="users-table" matSort matSortActive="created" matSortDisableClear
+    <mat-table #userTable [dataSource]="userDataSource" class="users-table" matSort matSortActive="userName" matSortDisableClear
       matSortDirection="asc">
 
       <!-- User Name Column -->
       <ng-container matColumnDef="userName">
-        <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> User Name </mat-header-cell>
         <mat-cell *matCellDef="let user"> {{user.userName}} </mat-cell>
       </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef ngClass="column-large"> Name </mat-header-cell>
-        <mat-cell *matCellDef="let user" ngClass="column-large">{{user.lastName}}, {{user.firstName}}</mat-cell>
+      <!-- First Name Column -->
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+        <mat-cell *matCellDef="let user" >{{user.firstName}}</mat-cell>
+      </ng-container>
+
+      <!-- Last Name Column -->
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header >Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let user" >{{user.lastName}}</mat-cell>
       </ng-container>
 
       <!-- Email Column -->
       <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
         <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
       </ng-container>
 

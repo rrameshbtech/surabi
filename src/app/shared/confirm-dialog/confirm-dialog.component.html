@@ -1,3 +1,11 @@
-<p>
-  confirm-dialog works!
-</p>
+<section>
+  <h2 mat-dialog-title>Confirm {{confirmDetails.title}}</h2>
+  <mat-dialog-content ngClass="message-container" align="start center">
+    <mat-icon align="left" class="fa fa-question-circle fa-2x" color="accent"></mat-icon>
+    {{confirmDetails.message}}?
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button (click)="confirm()" type="button" color="primary">Yes</button>
+    <button mat-raised-button mat-dialog-close type="button" color="warn">No</button>
+  </mat-dialog-actions>
+</section>

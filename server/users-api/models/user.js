@@ -4,7 +4,8 @@ var mongoose = require('mongoose'),
 
 var userModel = new Schema({
   userName: {
-    type: String
+    type: String,
+    unique: true
   },
   firstName: {
     type: String

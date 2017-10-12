@@ -23,12 +23,16 @@ import { CommonDialogService } from './common-dialog.service';
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ConfirmDialogComponent
   ],
   providers: [
     ExceptionService,
     ToastService,
     CommonDialogService
+  ],
+  entryComponents:[
+    ConfirmDialogComponent
   ]
 })
 export class SharedModule { }

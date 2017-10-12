@@ -6,6 +6,8 @@ import { User } from '../../models/user.model';
 import { UserDataSource } from './user-data-source.model';
 import { UserService } from '../services/user.service';
 import { ToastService } from '../../shared/toast.service';
+import { CommonDialogService } from '../../shared/common-dialog.service';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'srb-users-user',
@@ -14,7 +16,7 @@ import { ToastService } from '../../shared/toast.service';
 })
 export class UserComponent implements OnInit {
 
-  userTableColumns = ['actions', 'userName', 'name', 'email', 'phoneNumber', 'isActive'];
+  userTableColumns = ['actions', 'userName', 'firstName', 'lastName', 'email', 'phoneNumber', 'isActive'];
   userDataSource: UserDataSource | null;
   mode = 'Create';
 
@@ -28,7 +30,8 @@ export class UserComponent implements OnInit {
 
   constructor(private http: HttpClient
     , private userService: UserService
-    , private toaster: ToastService) {
+    , private toaster: ToastService
+    , private commonDialog: CommonDialogService) {
     this.user = new User();
     this.user.isActive = true;
   }
@@ -74,10 +77,18 @@ export class UserComponent implements OnInit {
   }
 
   public deleteUser(userToDelete: User): void {
-    this.userService.deleteUser(userToDelete)
-      .subscribe(() => {
-        this.toaster.show(`User "${userToDelete.userName}" deleted successfully.`);
+
+    this.commonDialog.confirm(`Delete`, `Are you sure to delete user "${userToDelete.userName}"`)
+      .afterClosed()
+      .subscribe((confirmResult) => {
+        if (confirmResult) {
+          this.userService.deleteUser(userToDelete)
+            .subscribe(() => {
+              this.toaster.show(`User "${userToDelete.userName}" deleted successfully.`);
+            });
+        }
       });
+
   }
 
   /**
