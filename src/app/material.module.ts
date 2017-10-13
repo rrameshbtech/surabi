@@ -12,6 +12,7 @@ import {
   MatSortModule,
   MatPaginatorModule,
   MatDialogModule,
+  MatExpansionModule,
   NoConflictStyleCompatibilityMode
 } from '@angular/material';
 
@@ -29,6 +30,7 @@ import {
     MatSortModule,
     MatPaginatorModule,
     MatDialogModule,
+    MatExpansionModule,
     NoConflictStyleCompatibilityMode
   ],
   exports: [
@@ -44,6 +46,7 @@ import {
     MatSortModule,
     MatPaginatorModule,
     MatDialogModule,
+    MatExpansionModule,
     NoConflictStyleCompatibilityMode
   ]
 })

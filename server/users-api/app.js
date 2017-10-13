@@ -4,6 +4,9 @@ var express = require("express"),
   mongoose = require('mongoose'),
   bodyParser = require('body-parser');
 
+//Assigning 3rd party promise, as mongoose promise is depricated
+mongoose.Promise = require('bluebird');
+
 //configure database connections
 var dbOptions = {
   useMongoClient:true

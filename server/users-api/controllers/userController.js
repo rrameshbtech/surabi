@@ -24,11 +24,10 @@ var userController = function (User) {
 
     //build query
     searchableFields.forEach(function (fieldName) {
-      if (req.query[fieldName.toLowerCase()]) {
-        query[fieldName] = req.query[fieldName.toLowerCase()];
+      if (req.query[fieldName]) {
+        query[fieldName] = req.query[fieldName];
       }
     });
-
 
     searchQuery = User.find(query)
       .skip(page * pageSize)

@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatPaginator, MatSort, MatSnackBar } from '@angular/material';
+import { MediaChange, ObservableMedia } from '@angular/flex-layout';
+import { Subscription } from 'rxjs/subscription';
 
 import { User } from '../../models/user.model';
 import { UserDataSource } from './user-data-source.model';
@@ -8,30 +10,36 @@ import { UserService } from '../services/user.service';
 import { ToastService } from '../../shared/toast.service';
 import { CommonDialogService } from '../../shared/common-dialog.service';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
+import { UserFilterComponent } from './user-filter.component';
 
 @Component({
   selector: 'srb-users-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy  {
 
-  userTableColumns = ['actions', 'userName', 'firstName', 'lastName', 'email', 'phoneNumber', 'isActive'];
+  userTableColumns:string[] = [];
+  bigScreenColumns = ['actions', 'userName', 'firstName', 'lastName', 'email', 'phoneNumber', 'isActive'];
+  smallScreenColumns = ['actions', 'userName'];
+  
   userDataSource: UserDataSource | null;
   mode = 'Create';
+  mediaWatcher: Subscription;
 
   saveUserSubscriber: any;
   loadUsersSubscriber: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
+  @ViewChild(UserFilterComponent) userFilter: UserFilterComponent;
   user: User;
 
   constructor(private http: HttpClient
     , private userService: UserService
     , private toaster: ToastService
-    , private commonDialog: CommonDialogService) {
+    , private commonDialog: CommonDialogService
+    , private media: ObservableMedia) {
     this.user = new User();
     this.user.isActive = true;
   }
@@ -39,15 +47,25 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.userDataSource = new UserDataSource(
       this.userService!,
+      this.userFilter,
       this.sort,
       this.paginator);
 
-    this.user.userName = 'test_user_name';
-    this.user.firstName = 'test_first_name';
-    this.user.lastName = 'test_last_name';
-    this.user.email = 'test_email@example.com';
-    this.user.phoneNumber = '9600077796';
-    this.user.address = 'test_address';
+    this.mediaWatcher = this.media.subscribe((change: MediaChange) => {
+      if(change.mqAlias == 'xs' || change.mqAlias == 'sm'){
+        this.userTableColumns = this.smallScreenColumns;
+      } else{
+        this.userTableColumns = this.bigScreenColumns;
+        if (this.mode == 'View') {
+          this.user = new User();
+          this.mode = 'Create';
+        }
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.mediaWatcher.unsubscribe();
   }
 
   public isNewUser(): boolean {
@@ -74,6 +92,11 @@ export class UserComponent implements OnInit {
   public editUser(userToEdit: User): void {
     this.user = Object.assign({}, userToEdit);
     this.mode = 'Edit';
+  }
+
+  public viewUser(userToEdit: User): void {
+    this.user = Object.assign({}, userToEdit);
+    this.mode = 'View';
   }
 
   public deleteUser(userToDelete: User): void {
