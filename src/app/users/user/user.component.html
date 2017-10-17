@@ -118,9 +118,9 @@
 
       <!--Actions Column-->
       <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef ngClass="column-medium"></mat-header-cell>
-        <mat-cell *matCellDef="let user" ngClass="column-medium">
-          <button mat-mini-fab fxHide.gt-sm="true" (click)="viewUser(user)" aria-label="View User"><mat-icon class="fa fa-exclamation"></mat-icon></button>
+        <mat-header-cell *matHeaderCellDef ngClass="column-medium" ngClass.lt-md="column-large"></mat-header-cell>
+        <mat-cell *matCellDef="let user" ngClass="column-medium" ngClass.lt-md="column-large">
+          <button mat-mini-fab fxHide.gt-sm="true" (click)="viewUser(user)" aria-label="View User"><mat-icon class="fa fa-eye"></mat-icon></button>
           <button mat-mini-fab (click)="editUser(user)" aria-label="Edit User"><mat-icon class="fa fa-pencil"></mat-icon></button>
           <button mat-mini-fab color="warn" (click)="deleteUser(user)" aria-label="Delete User"><mat-icon class="fa fa-trash"></mat-icon></button>
         </mat-cell>

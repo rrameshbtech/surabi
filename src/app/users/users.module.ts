@@ -16,6 +16,7 @@ import { UsersComponent } from './users.component';
 import { SharedModule } from '../shared/shared.module';
 import { HttpResponseInterceptor } from '../shared/http-response-interceptor.service';
 import { UserFilterComponent } from './user/user-filter.component';
+import { UserViewComponent } from './user/user-view.component';
 
 
 @NgModule({
@@ -35,11 +36,15 @@ import { UserFilterComponent } from './user/user-filter.component';
     LoginComponent,
     UserComponent,
     UsersComponent,
-    UserFilterComponent
+    UserFilterComponent,
+    UserViewComponent
   ],
   providers: [
     UserService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpResponseInterceptor, multi: true }
+  ],
+  entryComponents: [
+    UserViewComponent
   ]
 })
 export class UsersModule { }

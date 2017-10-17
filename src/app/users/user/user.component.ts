@@ -11,6 +11,7 @@ import { ToastService } from '../../shared/toast.service';
 import { CommonDialogService } from '../../shared/common-dialog.service';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { UserFilterComponent } from './user-filter.component';
+import { UserViewComponent } from './user-view.component';
 
 @Component({
   selector: 'srb-users-user',
@@ -42,6 +43,7 @@ export class UserComponent implements OnInit, OnDestroy  {
     , private media: ObservableMedia) {
     this.user = new User();
     this.user.isActive = true;
+    this.userTableColumns = this.smallScreenColumns;
   }
 
   ngOnInit() {
@@ -56,10 +58,6 @@ export class UserComponent implements OnInit, OnDestroy  {
         this.userTableColumns = this.smallScreenColumns;
       } else{
         this.userTableColumns = this.bigScreenColumns;
-        if (this.mode == 'View') {
-          this.user = new User();
-          this.mode = 'Create';
-        }
       }
     });
   }
@@ -94,9 +92,8 @@ export class UserComponent implements OnInit, OnDestroy  {
     this.mode = 'Edit';
   }
 
-  public viewUser(userToEdit: User): void {
-    this.user = Object.assign({}, userToEdit);
-    this.mode = 'View';
+  public viewUser(userToView: User): void {
+    this.commonDialog.openCustom(UserViewComponent, userToView, {});
   }
 
   public deleteUser(userToDelete: User): void {

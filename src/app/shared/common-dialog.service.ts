@@ -22,6 +22,22 @@ export class CommonDialogService {
     },
     data: null
   };
+
+  customDialogConfig = {
+    disableClose: false,
+    panelClass: '',
+    hasBackdrop: true,
+    backdropClass: '',
+    width: '100%',
+    height: '',
+    position: {
+      top: '',
+      bottom: '',
+      left: '',
+      right: ''
+    },
+    data: null
+  };
   
   constructor(public dialog: MatDialog
     , @Inject(DOCUMENT) doc: any) {
@@ -44,6 +60,13 @@ export class CommonDialogService {
 
     config.data = confirmDetails;
     return this.dialog.open(ConfirmDialogComponent, config);
+  }
+
+  openCustom(dialogComponent:any, data:any, config:any){
+    config = Object.assign(this.customDialogConfig, config);
+    config.data = data;
+
+    return this.dialog.open(dialogComponent, config);
   }
 
 }
