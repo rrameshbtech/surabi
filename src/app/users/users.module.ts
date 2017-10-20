@@ -17,6 +17,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HttpResponseInterceptor } from '../shared/http-response-interceptor.service';
 import { UserFilterComponent } from './user/user-filter.component';
 import { UserViewComponent } from './user/user-view.component';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { UserViewComponent } from './user/user-view.component';
   ],
   providers: [
     UserService,
+    AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpResponseInterceptor, multi: true }
   ],
   entryComponents: [

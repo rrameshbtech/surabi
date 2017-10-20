@@ -7,7 +7,7 @@ var sessionModel = new Schema({
   userName: {
     type: String
   },
-  token: {
+  userId: {
     type: String
   },
   firstName: {
@@ -16,13 +16,12 @@ var sessionModel = new Schema({
   lastName: {
     type: String
   },
-  isAuthenticated: {
-    type: Boolean,
-    default: false
+  email: {
+    type: String
   },
-  validTill: {
-    type: Date
-  }
+  phoneNumber: {
+    type: String
+  } 
 });
 
 module.exports = mongoose.model('Session', sessionModel);

@@ -23,9 +23,9 @@
           <div fxFlex="50">
             <mat-form-field>
               <input type="text" matInput name="txtFirstName" placeholder="First Name" [(ngModel)]="user.firstName" maxlength="15" required
-                minlength="8" #firstNameControl="ngModel">
+                minlength="3" #firstNameControl="ngModel">
               <mat-error *ngIf="firstNameControl.errors?.required">First name is required.</mat-error>
-              <mat-error *ngIf="firstNameControl.errors?.minlength">First name must have more than 7 chars.</mat-error>
+              <mat-error *ngIf="firstNameControl.errors?.minlength">First name must have more than 2 chars.</mat-error>
             </mat-form-field>
           </div>
           <div fxFlex="50">

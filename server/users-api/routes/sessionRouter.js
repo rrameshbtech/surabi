@@ -3,7 +3,7 @@ var express = require('express');
 
 var sessionRouter = function (Session, User) {
 
-  var sessionController = require('../controllers/sessionController')(Session),
+  var sessionController = require('../controllers/sessionController')(Session, User),
     router = express.Router();
 
   router.route('/')

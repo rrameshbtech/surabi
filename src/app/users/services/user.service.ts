@@ -15,11 +15,11 @@ import { environment } from '../../../environments/environment';
 export class UserService {
 
   dataChange: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
-  baseAPI = '';
+  baseUrl = '';
 
   constructor(private http: HttpClient
     , private exceptionService: ExceptionService) {
-    this.baseAPI = environment.usersAPI;
+    this.baseUrl = environment.userServiceBaseUrl + 'users/';
   }
 
   getUsers(query: any
@@ -41,20 +41,20 @@ export class UserService {
       .set('pagesize', pageSize.toString());
 
     return this.http
-      .get<SearchResult<User>>(this.baseAPI, { params: queryParams })
+      .get<SearchResult<User>>(this.baseUrl, { params: queryParams })
       .catch(this.exceptionService.handleBadResponse);
   }
 
   getUser(id: string): Observable<User> {
     return this.http
-      .get<User>(this.baseAPI + id)
+      .get<User>(this.baseUrl + id)
       .catch(this.exceptionService.handleBadResponse);
   }
 
   addUser(user: User): Observable<User> {
     const body = user;
     return this.http
-      .post<User>(this.baseAPI, body)
+      .post<User>(this.baseUrl, body)
       .catch(this.exceptionService.handleBadResponse)
       .finally(() => {
         this.dataChange.next([]);
@@ -63,7 +63,7 @@ export class UserService {
 
   updateUser(user: User): Observable<User> {
     return this.http
-      .put<User>(this.baseAPI + user._id, user)
+      .put<User>(this.baseUrl + user._id, user)
       .catch(this.exceptionService.handleBadResponse)
       .finally(() => {
         this.dataChange.next([]);
@@ -72,21 +72,11 @@ export class UserService {
 
   deleteUser(user: User): Observable<any> {
     return this.http
-      .delete(this.baseAPI + user._id)
+      .delete(this.baseUrl + user._id)
       .catch(this.exceptionService.handleBadResponse)
       .finally(() => {
         this.dataChange.next([]);
       });;
   }
 
-  //Todo: move to separate service
-  signIn(userName: string, password: string): Observable<any> {
-    const body = {
-      userName: userName,
-      password: password
-    };
-
-    return this.http.post(this.baseAPI + 'sessions', body)
-      .map((response: any) => response.json());
-  }
 }

@@ -2,8 +2,16 @@
 
 var userController = function (User) {
 
+  var passwordGenerator = require('generate-password');
+
   function getUserById(id, getCallback) {
     User.findById(id, getCallback);
+  }
+
+  function getUserByUserName(userName, getCallback) {
+    User.findOne({
+      'userName': userName
+    }, getCallback);
   }
 
   function getUsers(req, res) {
@@ -59,8 +67,14 @@ var userController = function (User) {
   }
 
   function createUser(req, res) {
-    var newUser = new User(req.body);
+    var newUser = new User(req.body),
+      newPassword = passwordGenerator.generate({
+        length: 10,
+        numbers: true
+      });
+    //Todo: encrypt the password with "bcrypt"
 
+    newUser.password = newPassword;
     newUser.save();
     res
       .status(201)
@@ -97,6 +111,7 @@ var userController = function (User) {
 
   return {
     getById: getUserById,
+    getUserByUserName: getUserByUserName,
     get: getUsers,
     create: createUser,
     update: updateUser,
