@@ -33,3 +33,15 @@ body {
 .mat-icon {
   height: auto !important;
 }
+
+
+/*Toaster CSS classes*/
+
+.toaster {
+  margin-top: 64px !important;
+}
+
+.error-toaster {
+  background-color: orangered !important;
+  color: white !important;
+}

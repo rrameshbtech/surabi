@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+
+import { Session } from '../../models/session.model';
+import { AuthService } from '../../shared/auth/auth.service';
+import { ToastService } from '../../shared/toast.service';
 
 @Component({
   selector: 'srb-users-login',
@@ -15,19 +18,21 @@ export class LoginComponent implements OnInit {
   userId = '';
   password = '';
 
-  constructor(private authService: AuthService,
-    private router: Router) { }
+  constructor(private authService: AuthService
+    , private router: Router
+    , private toast: ToastService) { }
 
   ngOnInit() {
   }
 
   signIn(): void {
-    this.signInSubscriber = this.authService.signIn(this.userId, this.password)
-      .subscribe((currentSession) => {
-        if (currentSession._id) {
+    this.signInSubscriber = this.authService.login(this.userId, this.password)
+      .subscribe((currentSession: Session) => {
+        if (currentSession && currentSession.token) {
+          this.authService.session = currentSession;
           this.router.navigate([this.defaultRedirectUrl]);
         } else {
-          console.log('User credentials are invalid.');
+          this.toast.error('User credentials are invalid.');
         }
       });
   }

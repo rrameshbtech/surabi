@@ -2,14 +2,17 @@
 
 var express = require("express"),
   mongoose = require('mongoose'),
-  bodyParser = require('body-parser');
+  bodyParser = require('body-parser'),
+  config = require('./utilities/config'),
+  validateToken = require('./middlewares/validate-auth-token'),
+  updateModifierFields = require('./middlewares/update-modifying-fields');
 
 //Assigning 3rd party promise, as mongoose promise is depricated
 mongoose.Promise = require('bluebird');
 
 //configure database connections
 var dbOptions = {
-  useMongoClient:true
+  useMongoClient: true
 };
 var db = mongoose.connect('mongodb://localhost/UserDetails', dbOptions);
 
@@ -27,13 +30,26 @@ usersApiApp.use(bodyParser.urlencoded({
 }));
 usersApiApp.use(bodyParser.json());
 
-usersApiApp.use(function(req, res, next) {
-  
+//Set CORS parameters to the response
+usersApiApp.use(function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization ");
   next();
 });
+
+//validate the auth tokens and throw error if invalid
+usersApiApp.use(validateToken().unless({
+  path: ['/api/sessions/'],
+  method: 'OPTIONS'
+}));
+
+//update modifier fields like createdBy, CreatedOn, modifiedBy, ModifiedOn
+
+usersApiApp.use(updateModifierFields().unless({
+  path:['/api/sessions/'],
+  method: ['OPTIONS', 'GET', 'DELETE']
+}));
 
 //import & assign the routes
 var userRouter = require('./routes/userRouter')(User),

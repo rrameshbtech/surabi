@@ -11,6 +11,11 @@ export class ExceptionService {
 
   handleBadResponse: (err: HttpErrorResponse) => Observable<any> = (err: HttpErrorResponse) => {
 
+    if(err.status === 401) {
+      //Do not show error message, as it will be redirected to login by default.
+      return Observable.of(false);
+    }
+
     let emsg = '';
 
     if (err.error instanceof Error) {

@@ -89,6 +89,8 @@ var userController = function (User) {
     req.user.lastName = req.body.lastName;
     req.user.address = req.body.address;
     req.user.isActive = req.body.isActive;
+    req.user.updatedBy = req.body.updatedBy;
+    req.user.updatedOn = req.body.updatedOn;
 
     req.user.save(function (err) {
       if (err) {
