@@ -12,6 +12,9 @@ import { AuthService } from '../../shared/auth/auth.service';
 })
 export class ResetPasswordComponent implements OnInit {
   resetPasswordSubscription: any;
+  existingPassword: string;
+  newPassword: string;
+  confirmPassword: string;
 
   constructor(private userService: UserService
   , private toaster: ToastService
