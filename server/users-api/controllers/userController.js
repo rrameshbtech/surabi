@@ -106,18 +106,39 @@ var userController = function (User) {
       if (err)
         res.status(500).send(err);
       else {
-        res.status(204).send('User deleted successfully.');
+        res.status(204).send(true);
       }
     });
   }
 
+  function resetPassword(req, res) {
+
+    if (req.user.password === req.body.currentPassword) {
+      req.user.password = req.body.newPassword;
+      req.user.updatedBy = req.body.updatedBy;
+      req.user.updatedOn = req.body.updatedOn;
+      req.user.save(function (err) {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          res.status(200).send(true);
+        }
+      });
+
+    } else {
+      res.status(400).send('Current password does not match.');
+    }
+
+  }
+
   return {
     getById: getUserById,
-    getUserByUserName: getUserByUserName,
+    getByUserName: getUserByUserName,
     get: getUsers,
     create: createUser,
     update: updateUser,
-    delete: deleteUser
+    delete: deleteUser,
+    resetPassword: resetPassword
   };
 
 };

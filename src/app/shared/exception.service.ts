@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/observable/of';
-import { MatSnackBar } from '@angular/material';
+import { ToastService } from './toast.service';
 
 @Injectable()
 export class ExceptionService {
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private toaster: ToastService) { }
 
   handleBadResponse: (err: HttpErrorResponse) => Observable<any> = (err: HttpErrorResponse) => {
 
@@ -31,9 +31,9 @@ export class ExceptionService {
     //   ? err.error ? err.error : JSON.stringify(err)
     //   : err.statusText || 'unknown error';
 
-    this.snackBar.open(`Error - Bad Response - ${emsg}`, 'OK', {duration: 3000});
-    // return Observable.throw(emsg); // TODO: We should NOT swallow error here.
-    return Observable.of(false);
+    this.toaster.error(`Error - Bad Response - ${emsg}`);
+    return Observable.throw(emsg); // TODO: We should NOT swallow error here.
+    //return Observable.of(false);
   }
 
 }

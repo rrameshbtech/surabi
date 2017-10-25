@@ -7,10 +7,8 @@ var sessionRouter = function (Session, User) {
     router = express.Router();
 
   router.route('/')
-    .get(function getSession(req, res) {
-      res.send('Get all session');
-    })
-    .post(sessionController.createSession);
+    .get(sessionController.get)
+    .post(sessionController.create);
 
   return router;
 };

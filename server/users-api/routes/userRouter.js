@@ -12,7 +12,7 @@ var userRouter = function (User) {
     .post(userController.create);
 
   //Add middleware to get user for routes with Id 
-  router.use('/:userId', function getUserByIdMiddleWare(req, res, next) {
+  router.use('/:userId*', function getUserByIdMiddleWare(req, res, next) {
 
     userController.getById(req.params.userId, afterUserFetched);
 
@@ -35,6 +35,9 @@ var userRouter = function (User) {
     })
     .put(userController.update)
     .delete(userController.delete);
+
+  router.route('/:userId/password')
+    .patch(userController.resetPassword);
 
   return router;
 };

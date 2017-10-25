@@ -70,6 +70,17 @@ export class UserService {
       });
   }
 
+  resetPassword(userId:string, currentPassword:string, newPassword:string): Observable<any> {
+    const patchData = {
+      currentPassword: currentPassword,
+      newPassword: newPassword
+    };
+
+    return this.http
+      .patch(`${this.baseUrl}${userId}/password`, patchData)
+      .catch(this.exceptionService.handleBadResponse);
+  }
+
   deleteUser(user: User): Observable<any> {
     return this.http
       .delete(this.baseUrl + user._id)

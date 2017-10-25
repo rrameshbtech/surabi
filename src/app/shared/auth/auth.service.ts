@@ -23,7 +23,18 @@ export class AuthService {
     };
 
     return this.http.post<Session>(this.baseUrl, body)
-      .catch(this.exceptionService.handleBadResponse);;
+      .catch(this.exceptionService.handleBadResponse);
+  }
+
+  refreshSession() {
+    return this.http.get<Session>(this.baseUrl)
+      .catch(this.exceptionService.handleBadResponse)
+      .map((refreshedSession: Session) => this.session = refreshedSession);
+  }
+
+  isAuthendicated() {
+    //Todo: implement logic to validate the token
+    return this.session && this.session.userId;
   }
 
   setToken(userToken: string): void {
@@ -35,7 +46,7 @@ export class AuthService {
   }
 
   get session(): Session {
-    return this._session;
+      return this._session;
   }
 
   set session(newSession: Session) {

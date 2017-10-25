@@ -14,11 +14,10 @@ import { UserComponent } from './user/user.component';
 import { UsersComponent } from './users.component';
 
 import { SharedModule } from '../shared/shared.module';
-import { HttpResponseInterceptor } from '../shared/auth/http-response-interceptor.service';
-import { AuthTokenInterceptor } from '../shared/auth/auth-token-interceptor.service';
 import { UserFilterComponent } from './user/user-filter.component';
 import { UserViewComponent } from './user/user-view.component';
-import { AuthService } from '../shared/auth/auth.service';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { EqualValidator } from './reset-password/equal-validator.directive';
 
 
 @NgModule({
@@ -39,13 +38,12 @@ import { AuthService } from '../shared/auth/auth.service';
     UserComponent,
     UsersComponent,
     UserFilterComponent,
-    UserViewComponent
+    UserViewComponent,
+    ResetPasswordComponent,
+    EqualValidator
   ],
   providers: [
     UserService
-    , AuthService
-    , { provide: HTTP_INTERCEPTORS, useClass: HttpResponseInterceptor, multi: true }
-    , { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true }
   ],
   entryComponents: [
     UserViewComponent

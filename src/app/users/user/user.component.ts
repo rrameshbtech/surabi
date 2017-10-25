@@ -28,8 +28,8 @@ export class UserComponent implements OnInit, OnDestroy  {
   mode = 'Create';
   mediaWatcher: Subscription;
 
-  saveUserSubscriber: any;
-  loadUsersSubscriber: any;
+  saveUserSubscription: any;
+  loadUsersSubscription: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -75,13 +75,14 @@ export class UserComponent implements OnInit, OnDestroy  {
    */
   public saveUser(userForm: any): void {
 
+    var saveObservable;
     if (!this.user._id) {
-      this.saveUserSubscriber = this.userService.addUser(this.user);
+      saveObservable = this.userService.addUser(this.user);
     } else {
-      this.saveUserSubscriber = this.userService.updateUser(this.user);
+      saveObservable = this.userService.updateUser(this.user);
     }
 
-    this.saveUserSubscriber.subscribe((data) => {
+    this.saveUserSubscription = saveObservable.subscribe((data) => {
       this.toaster.show(`User "${this.user.userName}" saved successfully.`);
       this.resetUser(userForm);
     });

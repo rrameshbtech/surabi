@@ -9,7 +9,7 @@ var sessionController = function (Session, User) {
   function createSession(req, res) {
     var newSession = new Session();
 
-    userController.getUserByUserName(req.body.userName, (err, user) => {
+    userController.getByUserName(req.body.userName, (err, user) => {
       if (err) {
         res
           .status(500)
@@ -39,6 +39,7 @@ var sessionController = function (Session, User) {
           userId: user._id
         };
         var loginResponse = {
+          userId: user._id,
           firstName: user.firstName,
           email: user.email,
           token: jwt.sign(userTokenData, config.keys.jwtSignKey)
@@ -59,8 +60,24 @@ var sessionController = function (Session, User) {
     Session.findById(sessionId, getCallback);
   }
 
+  function getSession(req, res) {
+    var validateAuth = require('../middlewares/validate-auth-token')();
+
+    validateAuth(req, res, () => {
+      var loggedInSession = {
+        userId: req.session.userId,
+        firstName: req.session.firstName,
+        email: req.session.email,
+        token: req.token
+      };
+      res.status(200).send(loggedInSession);
+    });
+    
+  }
+
   return {
-    createSession: createSession,
+    create: createSession,
+    get: getSession,
     getSessionById: getSessionById
   };
 

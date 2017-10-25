@@ -23,14 +23,17 @@ module.exports = function () {
         res.status(401).send(err);
         return;
       }
-      SessionController.getSessionById(tokenData.sessionId, function(error, currentSession) {
-        if(error) {
+      SessionController.getSessionById(tokenData.sessionId, function (error, currentSession) {
+        if (error) {
           res.status(401).send('Current session is expired or invalid.');
         }
+
         req.session = currentSession;
+        req.token = token;
+
         next();
       });
-      
+
     });
   }
 
