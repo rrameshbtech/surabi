@@ -18,7 +18,7 @@ export class AuthGuardService implements CanActivate{
       return true;
     }
 
-    if(this.auth.getToken()){
+    if(this.auth.token){
       return this.auth
         .refreshSession()
         .map((session) =>{

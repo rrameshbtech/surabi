@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'srb-secured-footer',
-  templateUrl: './footer.component.html',
+  selector: 'srb-public-footer',
+  templateUrl: './public-footer.component.html',
   styles: [`.footer {
       text-align: center;
       background-color: white;
@@ -14,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
     `
   ]
 })
-export class FooterComponent implements OnInit {
+export class PublicFooterComponent implements OnInit {
 
   constructor() { }
 

@@ -1,4 +1,5 @@
 <div [ngBusy]="signInSubscriber"></div>
+<srb-public-header></srb-public-header>
 <div class="full-width full-view-height" fxLayout="column" fxLayoutAlign="center center">
   <form #signInForm="ngForm" class="form-signin" (submit)="signIn()">
     <mat-card class="login-pane" fxFlex fxFlexAlign="center">
@@ -7,8 +8,8 @@
       </mat-card-title>
       <mat-card-content>
         <mat-form-field class="full-width">
-          <input type="text" matInput name="txtUserName" placeholder="User Name" [(ngModel)]="userName" autofocus="" maxlength="15" required
-            #userNameControl="ngModel">
+          <input type="text" matInput name="txtUserName" placeholder="User Name" [(ngModel)]="userName" autofocus="" maxlength="15"
+            required #userNameControl="ngModel">
           <mat-error *ngIf="userNameControl.errors?.required">User name is required</mat-error>
         </mat-form-field>
         <mat-form-field class="full-width">
@@ -24,3 +25,4 @@
     </mat-card>
   </form>
 </div>
+<srb-public-footer></srb-public-footer>

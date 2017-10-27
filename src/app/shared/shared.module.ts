@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { PublicHeaderComponent } from './public-header/public-header.component';
+import { PublicFooterComponent } from './public-footer/public-footer.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
@@ -24,11 +26,15 @@ import { AuthService } from './auth/auth.service';
     HttpClientModule
   ],
   declarations: [
+    PublicHeaderComponent,
+    PublicFooterComponent,
     HeaderComponent,
     FooterComponent,
     ConfirmDialogComponent
   ],
   exports: [
+    PublicHeaderComponent,
+    PublicFooterComponent,
     HeaderComponent,
     FooterComponent,
     ConfirmDialogComponent

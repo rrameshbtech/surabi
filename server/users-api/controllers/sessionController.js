@@ -38,16 +38,10 @@ var sessionController = function (Session, User) {
           sessionId: currentSession._id,
           userId: user._id
         };
-        var loginResponse = {
-          userId: user._id,
-          firstName: user.firstName,
-          email: user.email,
-          token: jwt.sign(userTokenData, config.keys.jwtSignKey)
-        };
 
         res
           .status(200)
-          .send(loginResponse);
+          .send(getSessionResponse(currentSession, jwt.sign(userTokenData, config.keys.jwtSignKey)));
       } else {
         res
           .status(400)
@@ -64,15 +58,18 @@ var sessionController = function (Session, User) {
     var validateAuth = require('../middlewares/validate-auth-token')();
 
     validateAuth(req, res, () => {
-      var loggedInSession = {
-        userId: req.session.userId,
-        firstName: req.session.firstName,
-        email: req.session.email,
-        token: req.token
-      };
-      res.status(200).send(loggedInSession);
+      res.status(200).send(getSessionResponse(req.session, req.token));
     });
-    
+
+  }
+
+  function getSessionResponse(session, token) {
+    return {
+      userId: session.userId,
+      name: session.firstName + ' ' + session.lastName,
+      email: session.email,
+      token: token
+    }
   }
 
   return {

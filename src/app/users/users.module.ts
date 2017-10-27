@@ -19,7 +19,6 @@ import { UserViewComponent } from './user/user-view.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { EqualValidator } from './reset-password/equal-validator.directive';
 
-
 @NgModule({
   imports: [
     CommonModule,

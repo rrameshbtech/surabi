@@ -14,18 +14,20 @@ const routes: Routes = [
     component: UsersComponent,
     children: [
       {
-        path: 'login',
-        component: LoginComponent
-      },{
         path: 'resetpassword',
         component: ResetPasswordComponent,
         canActivate: [AuthGuardService]
       },
       {
         path: '',
-        component: UserComponent
+        component: UserComponent,
+        canActivate: [AuthGuardService]
       }
     ]
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 
 ];

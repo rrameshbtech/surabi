@@ -32,17 +32,25 @@ export class AuthService {
       .map((refreshedSession: Session) => this.session = refreshedSession);
   }
 
+  clearSession() {
+    this.session = null;
+  }
+
   isAuthendicated() {
     //Todo: implement logic to validate the token
     return this.session && this.session.userId;
   }
 
-  setToken(userToken: string): void {
-    localStorage.setItem(TOKEN_NAME, userToken);
+  get token(): string {
+    return localStorage.getItem(TOKEN_NAME);
   }
 
-  getToken(): string {
-    return localStorage.getItem(TOKEN_NAME);
+  set token(userToken: string) {
+    if(userToken) {
+      localStorage.setItem(TOKEN_NAME, userToken);
+    } else {
+      localStorage.removeItem(TOKEN_NAME);
+    }
   }
 
   get session(): Session {
@@ -50,7 +58,12 @@ export class AuthService {
   }
 
   set session(newSession: Session) {
-    this._session = new Session(newSession);
-    this.setToken(this.session.token);
+    if(newSession){
+      this._session = new Session(newSession);
+      this.token = this.session.token;
+    } else {
+      this._session = null;
+      this.token = null;
+    }
   }
 }
