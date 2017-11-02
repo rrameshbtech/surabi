@@ -1,20 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material';
 
-import { FooterComponent } from './public-footer.component';
+import { PublicFooterComponent } from './public-footer.component';
 
 describe('PublicFooterComponent', () => {
-  let component: FooterComponent;
-  let fixture: ComponentFixture<FooterComponent>;
+  let component: PublicFooterComponent;
+  let fixture: ComponentFixture<PublicFooterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
+      imports: [MatIconModule],
+      declarations: [ PublicFooterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FooterComponent);
+    fixture = TestBed.createComponent(PublicFooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

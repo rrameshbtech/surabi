@@ -4,7 +4,7 @@ import { Router, CanActivate } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Injectable()
-export class AuthGuardService implements CanActivate{
+export class AuthGuardService implements CanActivate {
 
   constructor(
     private router: Router,
@@ -12,16 +12,16 @@ export class AuthGuardService implements CanActivate{
 
   }
 
-  canActivate():any {
-    
-    if(this.auth.isAuthendicated()) {
+  canActivate(): any {
+
+    if (this.auth.isAuthendicated()) {
       return true;
     }
 
-    if(this.auth.token){
+    if (this.auth.token) {
       return this.auth
         .refreshSession()
-        .map((session) =>{
+        .map((session) => {
           return true;
         });
     } else {

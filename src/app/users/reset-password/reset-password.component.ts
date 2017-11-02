@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { EqualValidator } from './equal-validator.directive';
 import { UserService } from '../services/user.service';
 import { ToastService } from '../../shared/toast.service';
 import { AuthService } from '../../shared/auth/auth.service';

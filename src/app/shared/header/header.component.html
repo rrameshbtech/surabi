@@ -1,16 +1,18 @@
-<mat-toolbar color="primary" role="header">
-  <a mat-button href="{{baseUrl}}" class="logo">
-    <mat-icon class="fa fa-2x fa-gear" aria-hidden="true"></mat-icon><span>Surabi</span>
-  </a>
-  <span class="fill-remaining"></span>
-  <a click="return false;" mat-button [mat-menu-trigger-for]="userMenu">
-    <mat-icon class="fa fa-user-circle fa-lg"></mat-icon> Hello {{auth.session.name}}!
-  </a>
+<section>
+  <mat-toolbar color="primary" role="header">
+    <a mat-button href="{{baseUrl}}" class="logo">
+      <mat-icon class="fa fa-2x fa-gear" aria-hidden="true"></mat-icon><span>Surabi</span>
+    </a>
+    <span class="fill-remaining"></span>
+    <a click="return false;" mat-button [mat-menu-trigger-for]="userMenu">
+      <mat-icon class="fa fa-user-circle fa-lg"></mat-icon> Hello {{auth?.session?.name}}!
+    </a>
 
-</mat-toolbar>
+  </mat-toolbar>
 
-<mat-menu #userMenu="matMenu" [overlapTrigger]="false">
-  <a href="/users/resetpassword" mat-menu-item> Reset Password </a>
-  <button mat-menu-item> Settings </button>
-  <button (click)="logout()" mat-menu-item>Logout </button>
-</mat-menu>
+  <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+    <a routerLink="/users/resetpassword" mat-menu-item> Reset Password </a>
+    <button mat-menu-item> Settings </button>
+    <button (click)="logout()" mat-menu-item>Logout </button>
+  </mat-menu>
+</section>

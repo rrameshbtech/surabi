@@ -6,10 +6,10 @@ import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
     [formControl],[validateEqual][ngModel]`,
   providers: [{
     provide: NG_VALIDATORS, useExisting: forwardRef(() =>
-      EqualValidator), multi: true
+      EqualValiadtorDirective), multi: true
   }]
 })
-export class EqualValidator implements Validator {
+export class EqualValiadtorDirective implements Validator {
 
   constructor( @Attribute('validateEqual') public validateEqual: string
     , @Attribute('reverse') public reverse: boolean) { }

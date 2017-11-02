@@ -1,20 +1,35 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CommonModule } from '@angular/common';
 
-import { HeaderComponent } from './public-header.component';
+import { PublicHeaderComponent } from './public-header.component';
+
+class MockRouter {
+  navigate = jasmine.createSpy('navigate');
+}
 
 describe('PublicHeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
+  let component: PublicHeaderComponent;
+  let fixture: ComponentFixture<PublicHeaderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      imports: [
+        CommonModule,
+        MatIconModule, 
+        RouterTestingModule.withRoutes([
+        
+      ])],
+      declarations: [ PublicHeaderComponent ],
+      providers: [
+      ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
+    fixture = TestBed.createComponent(PublicHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

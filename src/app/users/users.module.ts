@@ -17,7 +17,7 @@ import { SharedModule } from '../shared/shared.module';
 import { UserFilterComponent } from './user/user-filter.component';
 import { UserViewComponent } from './user/user-view.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { EqualValidator } from './reset-password/equal-validator.directive';
+import { EqualValiadtorDirective } from './reset-password/equal-validator.directive';
 
 @NgModule({
   imports: [
@@ -39,7 +39,7 @@ import { EqualValidator } from './reset-password/equal-validator.directive';
     UserFilterComponent,
     UserViewComponent,
     ResetPasswordComponent,
-    EqualValidator
+    EqualValiadtorDirective
   ],
   providers: [
     UserService

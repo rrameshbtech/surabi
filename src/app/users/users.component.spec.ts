@@ -1,5 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from '../material.module';
 
+import { AuthService } from '../shared/auth/auth.service';
+import { ExceptionService } from '../shared/exception.service';
+import { ToastService } from '../shared/toast.service';
+import { HeaderComponent } from '../shared/header/header.component';
+import { FooterComponent } from '../shared/footer/footer.component';
 import { UsersComponent } from './users.component';
 
 describe('UsersComponent', () => {
@@ -8,7 +16,9 @@ describe('UsersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UsersComponent ]
+      imports: [RouterTestingModule, MaterialModule, HttpClientModule],
+      declarations: [ UsersComponent, HeaderComponent, FooterComponent ],
+      providers: [ AuthService, ExceptionService, ToastService ]
     })
     .compileComponents();
   }));

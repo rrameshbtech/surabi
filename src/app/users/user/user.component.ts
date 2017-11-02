@@ -63,7 +63,9 @@ export class UserComponent implements OnInit, OnDestroy  {
   }
 
   ngOnDestroy() {
-    this.mediaWatcher.unsubscribe();
+    if(this.mediaWatcher){
+      this.mediaWatcher.unsubscribe();
+    }
   }
 
   public isNewUser(): boolean {

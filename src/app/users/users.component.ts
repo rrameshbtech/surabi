@@ -8,10 +8,9 @@ import { Router } from '@angular/router';
 })
 export class UsersComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor() { }
 
-  ngOnInit() {
- //  this.router.navigate(['users/login']);
+  ngOnInit() { 
   }
 
 }

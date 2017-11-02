@@ -1,11 +1,17 @@
 import { TestBed, inject } from '@angular/core/testing';
 
+import { MaterialModule } from '../material.module';
+import { ToastService } from './toast.service';
 import { ExceptionService } from './exception.service';
 
 describe('ExceptionService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ExceptionService]
+      imports: [MaterialModule],
+      providers: [
+        ExceptionService, 
+        ToastService
+      ]
     });
   });
 
