@@ -1,25 +1,25 @@
 <section>
-  <h3>{{user.userName}} Details</h3>
+  <h3>{{user?.userName}} Details</h3>
   <mat-dialog-content align="center center">
       <div fxLayout>
         <div fxFlex="50" >First Name:</div>
-        <div fxFlex="50" >{{user.firstName}}</div>
+        <div fxFlex="50" >{{user?.firstName}}</div>
       </div>
       <div fxLayout>
         <div fxFlex="50" >Last Name:</div>
-        <div fxFlex="50" >{{user.lastName}}</div>
+        <div fxFlex="50" >{{user?.lastName}}</div>
       </div>
       <div fxLayout>
         <div fxFlex="50" >Email:</div>
-        <div fxFlex="50" >{{user.email}}</div>
+        <div fxFlex="50" >{{user?.email}}</div>
       </div>
       <div fxLayout>
         <div fxFlex="50" >Phone Number:</div>
-        <div fxFlex="50" >{{user.phoneNumber}}</div>
+        <div fxFlex="50" >{{user?.phoneNumber}}</div>
       </div>
       <div fxLayout>
         <div fxFlex="50" >Address:</div>
-        <div fxFlex="50" >{{user.address}}</div>
+        <div fxFlex="50" >{{user?.address}}</div>
       </div>
   </mat-dialog-content>
   <mat-dialog-actions align="end">

@@ -15,7 +15,7 @@ import { UsersComponent } from './users.component';
 
 import { SharedModule } from '../shared/shared.module';
 import { UserFilterComponent } from './user/user-filter.component';
-import { UserViewComponent } from './user/user-view.component';
+import { UserViewDialogComponent } from './user/user-view-dialog.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { EqualValiadtorDirective } from './reset-password/equal-validator.directive';
 
@@ -37,7 +37,7 @@ import { EqualValiadtorDirective } from './reset-password/equal-validator.direct
     UserComponent,
     UsersComponent,
     UserFilterComponent,
-    UserViewComponent,
+    UserViewDialogComponent,
     ResetPasswordComponent,
     EqualValiadtorDirective
   ],
@@ -45,7 +45,7 @@ import { EqualValiadtorDirective } from './reset-password/equal-validator.direct
     UserService
   ],
   entryComponents: [
-    UserViewComponent
+    UserViewDialogComponent
   ]
 })
 export class UsersModule { }

@@ -24,7 +24,8 @@ import {
 } from '@angular/material';
 import { OverlayContainer } from '@angular/cdk/overlay';
 
-import { ConfirmDialogComponent } from './confirm-dialog.component';
+import { UserViewDialogComponent } from './user-view-dialog.component';
+
 
 @Directive({selector: 'dir-with-view-container'})
 class DirectiveWithViewContainer {
@@ -50,23 +51,23 @@ class ComponentWithChildViewContainer {
     NoopAnimationsModule
   ],
   declarations: [
-    ConfirmDialogComponent,
+    UserViewDialogComponent,
     ComponentWithChildViewContainer,
     DirectiveWithViewContainer
   ],
   exports: [
-    ConfirmDialogComponent,
+    UserViewDialogComponent,
     ComponentWithChildViewContainer,
     DirectiveWithViewContainer
   ],
   entryComponents: [
-    ConfirmDialogComponent,
+    UserViewDialogComponent,
     ComponentWithChildViewContainer
   ]
 })
-class ConfirmDialogTestingModule { }
+class UserViewDialogTestingModule { }
 
-describe('ConfirmDialogComponent', () => {
+describe('UserViewDialogComponent', () => {
 
   let dialog: MatDialog;
   let overlayContainerElement: HTMLElement;
@@ -78,7 +79,7 @@ describe('ConfirmDialogComponent', () => {
       imports: [
         MatDialogModule, 
         NoopAnimationsModule,
-        ConfirmDialogTestingModule
+        UserViewDialogTestingModule
       ],
       declarations: [],
       providers:[{provide: OverlayContainer, useFactory: () => {
@@ -102,77 +103,13 @@ describe('ConfirmDialogComponent', () => {
   });
 
   it('should be created', () => {
-    let dialogRef = dialog.open(ConfirmDialogComponent, {
+    let dialogRef = dialog.open(UserViewDialogComponent, {
       viewContainerRef: testViewContainerRef
     });
 
     viewContainerFixture.detectChanges();
 
     expect(dialogRef.componentInstance).toBeTruthy();
-  });
-
-  it('should show default message when confirmation message is not given.', () => {
-    let dialogRef = dialog.open(ConfirmDialogComponent, {
-      viewContainerRef: testViewContainerRef
-    });
-
-    viewContainerFixture.detectChanges();
-
-    expect(overlayContainerElement.querySelector('mat-dialog-content').textContent)
-      .toContain('Are you sure to continue?');
-  });
-
-  it('should show default title when confirmation title is not given.', () => {
-    let dialogRef = dialog.open(ConfirmDialogComponent, {
-      viewContainerRef: testViewContainerRef
-    });
-
-    viewContainerFixture.detectChanges();
-
-    expect(overlayContainerElement.querySelector('h2').textContent)
-      .toContain('Confirm Action');
-  });
-
-  it('should show valid message when confirmation message is given.', () => {
-    let testConfirmData = {
-      message: 'Are you sure to Test?'
-    }
-    let dialogRef = dialog.open(ConfirmDialogComponent, {
-      viewContainerRef: testViewContainerRef,
-      data: testConfirmData
-    });
-
-    viewContainerFixture.detectChanges();
-
-    expect(overlayContainerElement.querySelector('mat-dialog-content').textContent)
-      .toContain(testConfirmData.message);
-  });
-
-  it('should show valid title when confirmation title is given.', () => {
-    let testConfirmData = {
-      title: 'Dialog Tested'
-    }
-    let dialogRef = dialog.open(ConfirmDialogComponent, {
-      viewContainerRef: testViewContainerRef,
-      data: testConfirmData
-    });
-
-    viewContainerFixture.detectChanges();
-
-    expect(overlayContainerElement.querySelector('h2').textContent)
-      .toContain(testConfirmData.title);
-  });
-
-  it('should pass true to callback when "Yes" is clicked.', () => {
-    let dialogRef = dialog.open(ConfirmDialogComponent, {
-      viewContainerRef: testViewContainerRef
-    });
-
-    viewContainerFixture.detectChanges();
-
-    let yesButton = overlayContainerElement.querySelector('button:first-child') as HTMLElement;
-    yesButton.click();
-    viewContainerFixture.detectChanges();    
   });
 
 });

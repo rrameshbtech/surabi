@@ -4,14 +4,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { User } from '../../models/user.model';
 
 @Component({
-  selector: 'srb-user-view',
-  templateUrl: './user-view.component.html',
+  selector: 'srb-user-view-dialog',
+  templateUrl: './user-view-dialog.component.html',
   styles: []
 })
-export class UserViewComponent implements OnInit {
+export class UserViewDialogComponent implements OnInit {
 
   constructor(
-    public dialogRef: MatDialogRef<UserViewComponent>,
+    public dialogRef: MatDialogRef<UserViewDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public user:User) { }
 
   ngOnInit() {

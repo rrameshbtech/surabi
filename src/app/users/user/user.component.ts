@@ -11,7 +11,7 @@ import { ToastService } from '../../shared/toast.service';
 import { CommonDialogService } from '../../shared/common-dialog.service';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { UserFilterComponent } from './user-filter.component';
-import { UserViewComponent } from './user-view.component';
+import { UserViewDialogComponent } from './user-view-dialog.component';
 
 @Component({
   selector: 'srb-users-user',
@@ -96,7 +96,7 @@ export class UserComponent implements OnInit, OnDestroy  {
   }
 
   public viewUser(userToView: User): void {
-    this.commonDialog.openCustom(UserViewComponent, userToView, {});
+    this.commonDialog.openCustom(UserViewDialogComponent, userToView, {});
   }
 
   public deleteUser(userToDelete: User): void {

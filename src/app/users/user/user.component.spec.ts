@@ -12,7 +12,7 @@ import { ExceptionService } from '../../shared/exception.service';
 import { CommonDialogService } from '../../shared/common-dialog.service';
 import { UserService } from '../services/user.service';
 import { UserFilterComponent } from './user-filter.component';
-import { UserViewComponent } from './user-view.component';
+import { UserViewDialogComponent } from './user-view-dialog.component';
 import { UserComponent } from './user.component';
 
 describe('UserComponent', () => {
@@ -30,7 +30,7 @@ describe('UserComponent', () => {
       ],
       declarations: [ 
         UserComponent,
-        UserViewComponent,
+        UserViewDialogComponent,
         UserFilterComponent ],
       providers: [
         ObservableMedia,

@@ -15,6 +15,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class ConfirmDialogComponent implements OnInit {
 
+  defaultMessage = 'Are you sure to continue?';
+  defaultTitle = 'Action';
+  
   constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>
     , @Inject(MAT_DIALOG_DATA) public confirmDetails: any) 
     { }
