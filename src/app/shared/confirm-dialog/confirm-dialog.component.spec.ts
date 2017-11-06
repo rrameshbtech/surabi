@@ -1,4 +1,4 @@
-import { 
+import {
   TestBed,
   async,
   ComponentFixture,
@@ -6,7 +6,7 @@ import {
   flushMicrotasks,
   inject,
   tick
- } from '@angular/core/testing';
+} from '@angular/core/testing';
 import {
   ViewContainerRef,
   NgModule,
@@ -26,7 +26,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 
 import { ConfirmDialogComponent } from './confirm-dialog.component';
 
-@Directive({selector: 'dir-with-view-container'})
+@Directive({ selector: 'dir-with-view-container' })
 class DirectiveWithViewContainer {
   constructor(public viewContainerRef: ViewContainerRef) { }
 }
@@ -76,21 +76,23 @@ describe('ConfirmDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatDialogModule, 
+        MatDialogModule,
         NoopAnimationsModule,
         ConfirmDialogTestingModule
       ],
       declarations: [],
-      providers:[{provide: OverlayContainer, useFactory: () => {
-        overlayContainerElement = document.createElement('div');
-        return { getContainerElement: () => overlayContainerElement };
-      }}]
+      providers: [{
+        provide: OverlayContainer, useFactory: () => {
+          overlayContainerElement = document.createElement('div');
+          return { getContainerElement: () => overlayContainerElement };
+        }
+      }]
     });
 
     TestBed.compileComponents();
   }));
 
-  beforeEach(inject([MatDialog ], (d: MatDialog) => {
+  beforeEach(inject([MatDialog], (d: MatDialog) => {
     dialog = d;
   }));
 
@@ -109,6 +111,16 @@ describe('ConfirmDialogComponent', () => {
     viewContainerFixture.detectChanges();
 
     expect(dialogRef.componentInstance).toBeTruthy();
+  });
+
+  it('should have question icon.', () => {
+    let dialogRef = dialog.open(ConfirmDialogComponent, {
+      viewContainerRef: testViewContainerRef
+    });
+
+    viewContainerFixture.detectChanges();
+    expect(overlayContainerElement.querySelector('.fa-question-circle'))
+      .toBeTruthy();
   });
 
   it('should show default message when confirmation message is not given.', () => {
@@ -163,16 +175,42 @@ describe('ConfirmDialogComponent', () => {
       .toContain(testConfirmData.title);
   });
 
-  it('should pass true to callback when "Yes" is clicked.', () => {
+  it('should pass true to callback when "Yes" is clicked.', async(() => {
+    let yesCallBack = jasmine.createSpy('Yes Button callback');
     let dialogRef = dialog.open(ConfirmDialogComponent, {
       viewContainerRef: testViewContainerRef
     });
-
     viewContainerFixture.detectChanges();
 
-    let yesButton = overlayContainerElement.querySelector('button:first-child') as HTMLElement;
-    yesButton.click();
-    viewContainerFixture.detectChanges();    
-  });
+    dialogRef
+      .afterClosed()
+      .subscribe(yesCallBack);
 
+    (overlayContainerElement.querySelector('button:first-child') as HTMLElement).click();
+    viewContainerFixture.detectChanges();
+    viewContainerFixture.whenStable().then(() =>{
+      expect(overlayContainerElement.querySelector('mat-dialog-container')).toBeFalsy();
+      expect(yesCallBack).toHaveBeenCalledWith(true);
+    });
+  }));
+
+  it('should not callback when "No" is clicked.', async(() => {
+    let noCallBack = jasmine.createSpy('No Callback');
+    let dialogRef = dialog.open(ConfirmDialogComponent, {
+      viewContainerRef: testViewContainerRef
+    });
+    viewContainerFixture.detectChanges();
+
+    dialogRef
+      .afterClosed()
+      .subscribe(noCallBack);
+
+    let noButton = overlayContainerElement.querySelector('button:last-child') as HTMLElement;
+    (noButton).click();
+    viewContainerFixture.detectChanges();
+    viewContainerFixture.whenStable().then(() =>{
+      //expect(overlayContainerElement.querySelector('mat-dialog-container')).toBeFalsy();
+      expect(noCallBack).toHaveBeenCalledTimes(0);
+    });
+  }));
 });
