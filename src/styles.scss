@@ -1,15 +1,47 @@
 @import 'theme';
-@import '../node_modules/bootstrap/scss/bootstrap';
 @import '../node_modules/font-awesome/scss/font-awesome';
-
+// @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import url(https://fonts.googleapis.com/css?family=Audiowide);
-.logo{    
-    padding: 5px;
-    span{
-        font-family: 'Audiowide', cursive;
-    }
+@import '../node_modules/angular2-busy/build/style/busy.css';
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
 }
 
-.footer{
-    text-align: center;    
+.fill-remaining {
+  flex: 1 1 auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-view-height {
+  height: 100vh;
+}
+
+.command-button {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.mat-card-title.no-gutter {
+  margin: -24px -24px auto -24px !important;
+}
+
+.mat-icon {
+  height: auto !important;
+}
+
+
+/*Toaster CSS classes*/
+
+.toaster {
+  margin-top: 64px !important;
+}
+
+.error-toaster {
+  background-color: orangered !important;
+  color: white !important;
 }

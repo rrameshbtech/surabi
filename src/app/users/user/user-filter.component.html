@@ -1,0 +1,31 @@
+<section>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h3>Filter Users</h3>
+      </mat-panel-title>
+      <mat-panel-description></mat-panel-description>
+    </mat-expansion-panel-header>
+    <div fxLayout fxLayoutAlign="space-around center" fxLayout.lt-md="column" fxLayoutGap="10px" fxLayoutGap.lt-md="0px">
+      <mat-form-field fxFlex floatPlaceholder="always" ngClass="full-width">
+        <input type="text" matInput name="txtUserName" placeholder="User Name" [(ngModel)]="filterParams.userName" maxlength="15">
+      </mat-form-field>
+      <mat-form-field fxFlex floatPlaceholder="always" ngClass="full-width">
+        <input type="text" matInput name="txtFirstName" placeholder="First Name" [(ngModel)]="filterParams.firstName" maxlength="15">
+      </mat-form-field>
+      <mat-form-field fxFlex floatPlaceholder="always" ngClass="full-width">
+        <input type="text" matInput name="txtLastName" placeholder="Last Name" [(ngModel)]="filterParams.lastName" maxlength="15">
+      </mat-form-field>
+      <mat-form-field fxFlex floatPlaceholder="always" ngClass="full-width">
+        <input type="text" matInput name="txtPhoneNumber" placeholder="Phone Number" [(ngModel)]="filterParams.phoneNumber" maxlength="15">
+      </mat-form-field>
+      <div fxFlex ngClass="full-width">
+        <mat-checkbox type="checkbox" name="isActiveCheck" [(ngModel)]="filterParams.isActive"> Is Active?</mat-checkbox>
+      </div>
+    </div>
+    <mat-action-row>
+      <button type="button" mat-button (click)="filter()">Filter</button>
+      <button type="button" mat-button (click)="reset()">Reset</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</section>

@@ -1,0 +1,135 @@
+<div [ngBusy]="saveUserSubscription"></div>
+
+<div class="full-width" fxLayout="column" fxLayoutAlign="center center">
+  <form #userForm="ngForm" class="user-pane" (ngSubmit)="saveUser(userForm)">
+
+    <mat-card fxFlex fxFlexAlign="center">
+      <mat-card-title class="no-gutter">
+        <mat-toolbar color="accent" class="user-title">{{mode}} User</mat-toolbar>
+      </mat-card-title>
+
+      <mat-card-content>
+        <div fxLayout="column" fxLayoutGap="10px" fxLayoutGap.lt-md="0px">
+          <div fxFlex>
+            <mat-form-field class="full-width">
+              <input type="text" matInput name="txtUserName" placeholder="User Name" [(ngModel)]="user.userName" autofocus="" maxlength="15"
+                required minlength="8" #userNameControl="ngModel">
+              <mat-error *ngIf="userNameControl.errors?.required">User name is required.</mat-error>
+              <mat-error *ngIf="userNameControl.errors?.minlength">User name must have more than 7 chars.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout fxLayout.lt-md="column" fxLayoutGap="10px" fxLayoutGap.lt-md="0px">
+          <div fxFlex="50">
+            <mat-form-field>
+              <input type="text" matInput name="txtFirstName" placeholder="First Name" [(ngModel)]="user.firstName" maxlength="15" required
+                minlength="3" #firstNameControl="ngModel">
+              <mat-error *ngIf="firstNameControl.errors?.required">First name is required.</mat-error>
+              <mat-error *ngIf="firstNameControl.errors?.minlength">First name must have more than 2 chars.</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50">
+            <mat-form-field>
+              <input type="text" matInput name="txtLastName" placeholder="Last Name" [(ngModel)]="user.lastName" maxlength="15">
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout fxLayout.lt-md="column" fxLayoutGap="10px" fxLayoutGap.lt-md="0px">
+          <div fxFlex="50%">
+            <mat-form-field>
+              <input type="text" matInput name="txtEmail" placeholder="Email Address" [(ngModel)]="user.email" required #emailControl="ngModel"
+                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
+              <mat-error *ngIf="emailControl.errors?.required">Email address is required.</mat-error>
+              <mat-error *ngIf="emailControl.errors?.pattern">Email address is not valid.</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%">
+            <mat-form-field>
+              <input type="text" matInput name="txtPhoneNumber" pattern="(\+91(-)?|91(-)?|0(-)?)?(9|8|7)[0-9]{9}" placeholder="Phone Number"
+                [(ngModel)]="user.phoneNumber" required #phoneNumberControl="ngModel">
+              <mat-error *ngIf="phoneNumberControl.errors?.required">Phone number is required.</mat-error>
+              <mat-error *ngIf="phoneNumberControl.errors?.pattern">Phone number is not valid.</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout fxLayout.lt-md="column" fxLayoutGap="10px" fxLayoutGap.lt-md="0px">
+          <div fxFlex="50%">
+            <mat-form-field fxFlex="100%">
+              <textarea matInput name="txtAddress" placeholder="Address" [(ngModel)]="user.address"></textarea>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" fxFlexAlign="center">
+            <mat-checkbox type="checkbox" [disabled]="mode==='Create'" name="isActiveCheck" [(ngModel)]="user.isActive"> Is Active?</mat-checkbox>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button class="command-button" color="primary" [disabled]="userForm.form.invalid" type="submit">Save</button>
+        <button mat-raised-button class="command-button" color="warn" type="button" (click)="resetUser(userForm)">Reset</button>
+      </mat-card-actions>
+
+    </mat-card>
+  </form>
+  <div fxFlex fxFlexAlign="center" class="user-filter-pane">
+    <srb-user-filter></srb-user-filter>
+  </div>
+  <div fxFlex fxFlexAlign="center" class="user-table-pane mat-elevation-z8">
+    <mat-table #userTable [dataSource]="userDataSource" class="users-table" matSort matSortActive="userName" matSortDisableClear
+      matSortDirection="asc">
+
+      <!-- User Name Column -->
+      <ng-container matColumnDef="userName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> User Name </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.userName}} </mat-cell>
+      </ng-container>
+
+      <!-- First Name Column -->
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+        <mat-cell *matCellDef="let user" >{{user.firstName}}</mat-cell>
+      </ng-container>
+
+      <!-- Last Name Column -->
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header >Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let user" >{{user.lastName}}</mat-cell>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+      </ng-container>
+
+      <!-- Phone Number Column -->
+      <ng-container matColumnDef="phoneNumber">
+        <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.phoneNumber}} </mat-cell>
+      </ng-container>
+
+      <!-- Is Active Column -->
+      <ng-container matColumnDef="isActive">
+        <mat-header-cell *matHeaderCellDef ngClass="column-small" align="center"> Is Active </mat-header-cell>
+        <mat-cell *matCellDef="let user" ngClass="column-small" align="center">
+          <mat-checkbox type="checkbox" [disabled]="true" [checked]="user.isActive"></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <!--Actions Column-->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef ngClass="column-medium" ngClass.lt-md="column-large"></mat-header-cell>
+        <mat-cell *matCellDef="let user" ngClass="column-medium" ngClass.lt-md="column-large">
+          <button mat-mini-fab fxHide.gt-sm="true" (click)="viewUser(user)" aria-label="View User"><mat-icon class="fa fa-eye"></mat-icon></button>
+          <button mat-mini-fab (click)="editUser(user)" aria-label="Edit User"><mat-icon class="fa fa-pencil"></mat-icon></button>
+          <button mat-mini-fab color="warn" (click)="deleteUser(user)" aria-label="Delete User"><mat-icon class="fa fa-trash"></mat-icon></button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="userTableColumns"></mat-header-row>
+      <mat-row *matRowDef="let user; columns: userTableColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator [length]="userDataSource.totalUsers" [pageSize]="2">
+    </mat-paginator>
+  </div>
+</div>

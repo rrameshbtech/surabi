@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  usersAPI: "http://localhost:3000/api/users"
+  baseUrl: 'http://localhost:4200/',
+  userServiceBaseUrl: 'http://localhost:3000/api/'
 };

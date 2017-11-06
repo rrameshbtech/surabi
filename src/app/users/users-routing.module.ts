@@ -1,17 +1,35 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import {LoginComponent} from './login/login.component';
+import { UsersComponent } from './users.component';
+import { LoginComponent } from './login/login.component';
+import { UserComponent } from './user/user.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+
+import { AuthGuardService } from '../shared/auth/auth-guard.service';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login'
+    component: UsersComponent,
+    children: [
+      {
+        path: 'resetpassword',
+        component: ResetPasswordComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: '',
+        component: UserComponent,
+        canActivate: [AuthGuardService]
+      }
+    ]
   },
   {
-    path:'login',
+    path: 'login',
     component: LoginComponent
   }
+
 ];
 
 @NgModule({

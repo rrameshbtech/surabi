@@ -1,3 +1,28 @@
-<p>
-  login works!
-</p>
+<div [ngBusy]="signInSubscriber"></div>
+<srb-public-header></srb-public-header>
+<div class="full-width full-view-height" fxLayout="column" fxLayoutAlign="center center">
+  <form #signInForm="ngForm" class="form-signin" (submit)="signIn()">
+    <mat-card class="login-pane" fxFlex fxFlexAlign="center">
+      <mat-card-title class="no-gutter">
+        <mat-toolbar color="primary" class="login-title"> Please Sign In</mat-toolbar>
+      </mat-card-title>
+      <mat-card-content>
+        <mat-form-field class="full-width">
+          <input type="text" matInput name="txtUserName" placeholder="User Name" [(ngModel)]="userName" autofocus="" maxlength="15"
+            required #userNameControl="ngModel">
+          <mat-error *ngIf="userNameControl.errors?.required">User name is required</mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input type="password" matInput name="txtPassword" class="form-control" placeholder="Password" [(ngModel)]="password" required
+            maxlength="15" #passwordControl="ngModel">
+          <mat-error *ngIf="passwordControl.errors?.required">Password is required</mat-error>
+        </mat-form-field>
+        <mat-checkbox type="checkbox" name="rememberMeCheck" [(ngModel)]="rememberMe"> Remember me</mat-checkbox>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" class="command-button" [disabled]="signInForm.form.invalid" type="submit">Sign in</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>
+<srb-public-footer></srb-public-footer>
