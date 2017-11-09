@@ -46,7 +46,7 @@ export class AuthService {
   }
 
   set token(userToken: string) {
-    if(userToken) {
+    if (userToken) {
       localStorage.setItem(TOKEN_NAME, userToken);
     } else {
       localStorage.removeItem(TOKEN_NAME);
@@ -54,11 +54,11 @@ export class AuthService {
   }
 
   get session(): Session {
-      return this._session;
+    return this._session;
   }
 
   set session(newSession: Session) {
-    if(newSession){
+    if (newSession) {
       this._session = new Session(newSession);
       this.token = this.session.token;
     } else {

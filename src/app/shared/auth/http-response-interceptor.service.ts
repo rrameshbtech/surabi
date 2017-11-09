@@ -20,7 +20,7 @@ export class HttpResponseInterceptor implements HttpInterceptor {
              this.router.navigate(['users/login']);
           };
         }
-        throw err;
+        return Observable.throw(err);
     });
   }
 

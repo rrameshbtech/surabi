@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(public auth: AuthService
     , private router: Router
-    ) {
+  ) {
     this.baseUrl = environment.baseUrl;
   }
 

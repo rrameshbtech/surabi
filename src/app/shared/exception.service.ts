@@ -27,13 +27,8 @@ export class ExceptionService {
       emsg = `Backend returned code ${err.status}, body was: ${err.error}`;
     }
 
-    // const emsg = err
-    //   ? err.error ? err.error : JSON.stringify(err)
-    //   : err.statusText || 'unknown error';
-
     this.toaster.error(`Error - Bad Response - ${emsg}`);
-    return Observable.throw(emsg); // TODO: We should NOT swallow error here.
-    //return Observable.of(false);
+    return Observable.throw(err);    
   }
 
 }
