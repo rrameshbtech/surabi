@@ -32,4 +32,12 @@ describe('UsersComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should container secured header', () => {
+    expect(fixture.nativeElement.querySelector('srb-secured-header')).toBeTruthy();
+  });
+
+  it('should container secured footer', () => {
+    expect(fixture.nativeElement.querySelector('srb-secured-footer')).toBeTruthy();
+  });
 });

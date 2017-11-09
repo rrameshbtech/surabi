@@ -24,4 +24,8 @@ describe('PublicFooterComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should contain copy right icon.', () => {
+    expect(fixture.nativeElement.querySelector('.fa-copyright')).toBeTruthy();
+  });
 });

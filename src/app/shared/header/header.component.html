@@ -4,10 +4,9 @@
       <mat-icon class="fa fa-2x fa-gear" aria-hidden="true"></mat-icon><span>Surabi</span>
     </a>
     <span class="fill-remaining"></span>
-    <a click="return false;" mat-button [mat-menu-trigger-for]="userMenu">
+    <a click="return false;" class="user-menu-button" mat-button [matMenuTriggerFor]="userMenu">
       <mat-icon class="fa fa-user-circle fa-lg"></mat-icon> Hello {{auth?.session?.name}}!
     </a>
-
   </mat-toolbar>
 
   <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
