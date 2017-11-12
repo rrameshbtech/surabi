@@ -6,8 +6,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 
 @Injectable()
 export class CommonDialogService {
-  confirmDialogRef: MatDialogRef<ConfirmDialogComponent> | null;
-  confirmDialogConfig = {
+  private confirmDialogRef: MatDialogRef<ConfirmDialogComponent> | null;
+  private confirmDialogConfig = {
     disableClose: true,
     panelClass: '',
     hasBackdrop: true,
@@ -22,8 +22,7 @@ export class CommonDialogService {
     },
     data: null
   };
-
-  customDialogConfig = {
+  private customDialogConfig = {
     disableClose: false,
     panelClass: '',
     hasBackdrop: true,
@@ -38,8 +37,8 @@ export class CommonDialogService {
     },
     data: null
   };
-  
-  constructor(public dialog: MatDialog
+
+  constructor(private dialog: MatDialog
     , @Inject(DOCUMENT) doc: any) {
     dialog.afterOpen.subscribe(() => {
       if (!doc.body.classList.contains('no-scroll')) {
@@ -51,18 +50,18 @@ export class CommonDialogService {
     });
   }
 
-  confirm(title:string, message:string){
+  confirm(title: string, message: string) {
     const confirmDetails = {
       title: title,
       message: message
     },
-    config = Object.assign({}, this.confirmDialogConfig);
+      config = Object.assign({}, this.confirmDialogConfig);
 
     config.data = confirmDetails;
     return this.dialog.open(ConfirmDialogComponent, config);
   }
 
-  openCustom(dialogComponent:any, data:any, config:any){
+  openCustom(dialogComponent: any, data: any, config: any) {
     config = Object.assign(this.customDialogConfig, config);
     config.data = data;
 
