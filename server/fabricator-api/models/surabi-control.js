@@ -17,6 +17,9 @@ var surabiControlModel = new Schema({
     tagName: {
       type: String
     },
+    skills: {
+      type: [String]
+    },
     createdBy: {
       type: String
     },
