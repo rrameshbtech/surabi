@@ -14,24 +14,25 @@ mongoose.Promise = require('bluebird');
 var dbOptions = {
   useMongoClient: true
 };
-var db = mongoose.connect('mongodb://localhost/UserDetails', dbOptions);
+var db = mongoose.connect('mongodb://localhost/Fabricator', dbOptions);
+
 
 //import the models requried
-var User = require('./models/user'),
-  Session = require('./models/session');
+var Template = require('./models/template'),
+  SurabiControl = require('./models/surabiControl');
 
 //configure the user service
-var usersApiApp = express(),
+var fabricatorApiApp = express(),
   port = config.port;
 
 //embed middlewares in the http pipe
-usersApiApp.use(bodyParser.urlencoded({
+fabricatorApiApp.use(bodyParser.urlencoded({
   extended: true
 }));
-usersApiApp.use(bodyParser.json());
+fabricatorApiApp.use(bodyParser.json());
 
 //Set CORS parameters to the response
-usersApiApp.use(function (req, res, next) {
+fabricatorApiApp.use(function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS,PATCH");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization ");
@@ -39,32 +40,25 @@ usersApiApp.use(function (req, res, next) {
 });
 
 //validate the auth tokens and throw error if invalid
-usersApiApp.use(validateToken().unless({
-  path: ['/api/sessions/'],
-  method: 'OPTIONS'
-}));
+fabricatorApiApp.use(validateToken());
 
 //update modifier fields like createdBy, CreatedOn, modifiedBy, ModifiedOn
-
-usersApiApp.use(updateModifierFields().unless({
-  path:['/api/sessions/'],
-  method: ['OPTIONS', 'GET', 'DELETE']
-}));
+fabricatorApiApp.use(updateModifierFields());
 
 //import & assign the routes
-var userRouter = require('./routes/userRouter')(User),
-  sessionRouter = require('./routes/sessionRouter')(Session, User);
+var templateRouter = require('./routes/templateRouter')(User),
+  surabiControlRouter = require('./routes/surabiControlRouter')(Session, User);
 
-usersApiApp.use(`/api/v${config.version}/users`, userRouter);
-usersApiApp.use(`/api/v${config.version}/sessions`, sessionRouter);
+fabricatorApiApp.use(`/api/v${config.version}/templates`, templateRouter);
+fabricatorApiApp.use(`/api/v${config.version}/surabiControls`, surabiControlRouter);
 
 //Provide dashboard for the users api to let the users know about the list of api end points
-usersApiApp.get('/', function getUserAPIDetails(req, res) {
-  res.send('Contains APIs for users & sessions.');
+fabricatorApiApp.get('/', function getUserAPIDetails(req, res) {
+  res.send('Contains APIs for fabricator related actions.');
 });
 
-usersApiApp.listen(port, function usersApiAppListener() {
-  console.log(`User API services are running at port ${port}`);
+fabricatorApiApp.listen(port, function fabricatorApiAppListener() {
+  console.log(`Fabricator API services are running at port ${port}`);
 });
 
-module.exports = usersApiApp;
+module.exports = fabricatorApiApp;

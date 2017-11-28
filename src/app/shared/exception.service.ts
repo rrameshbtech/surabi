@@ -18,7 +18,7 @@ export class ExceptionService {
 
     let emsg = '';
 
-    if (err.error instanceof Error) {
+    if (err.error instanceof Error || err.error.message) {
       // A client-side or network error occurred. Handle it accordingly.
       emsg = `An error occurred: ${err.error.message}`;
     } else {

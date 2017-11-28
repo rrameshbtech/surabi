@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
-import { AuthGuardService } from '../shared/auth/auth-guard.service';
+import { AuthGuard } from '../shared/auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -16,12 +16,12 @@ const routes: Routes = [
       {
         path: 'resetpassword',
         component: ResetPasswordComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuard]
       },
       {
         path: '',
         component: UserComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuard]
       }
     ]
   },

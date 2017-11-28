@@ -13,7 +13,7 @@ import { ExceptionService } from './exception.service';
 import { ToastService } from './toast.service';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { CommonDialogService } from './common-dialog.service';
-import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthGuard } from './auth/auth.guard';
 import { HttpResponseInterceptor } from './auth/http-response-interceptor.service';
 import { AuthTokenInterceptor } from './auth/auth-token-interceptor.service';
 import { AuthService } from './auth/auth.service';
@@ -43,7 +43,7 @@ import { AuthService } from './auth/auth.service';
     ExceptionService,
     ToastService,
     CommonDialogService,
-    AuthGuardService,
+    AuthGuard,
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpResponseInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true }

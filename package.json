@@ -2,6 +2,13 @@
   "name": "surabi",
   "version": "0.0.1",
   "license": "MIT",
+  "author": "Ramesh Ramalingam",
+  "description": "Dynamic for creator like APP Inventor",
+  "keywords": ["dynamic", "form", "app", "creator", "mean"],
+  "repository":{
+    "type": "git",
+    "url": "https://github.com/rrammeshbtech/surabi.git"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

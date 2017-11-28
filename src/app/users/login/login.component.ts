@@ -17,7 +17,7 @@ export const SURABI_USER_NAME = 'surabi-user-name';
 export class LoginComponent implements OnInit {
 
   signInSubscriber: any;
-  defaultRedirectUrl = './users';
+  redirectUrl = '/dashboard';
   userName = '';
   password = '';
   rememberMe = false;
@@ -33,13 +33,29 @@ export class LoginComponent implements OnInit {
       this.userName = existingUserName;
     }
 
-    this.activatedRoute.queryParams
-      .filter(param => param.loggedout)
-      .subscribe(loggedOutParam => {
-        this.toaster.show('You have been logged out successfully');
-      });
-
+    this.showLogoutMessage();
+    this.updateRedirectUrl();
     this.auth.clearSession();
+  }
+
+  updateRedirectUrl() {
+    this.activatedRoute.queryParams
+      .filter((param: any) => param.redirectTo)
+      .subscribe((redirectToParam: any) => {
+        this.redirectUrl = redirectToParam.redirectTo;
+      });
+  }
+
+  showLogoutMessage() {
+    this.activatedRoute.queryParams
+      .filter((param: any) => param.loggedout)
+      .subscribe(loggedOutParam => {
+        //Todo: setTimeout used for work around to solve change detection error,
+        //which may be resolved in later versions of angular.
+        setTimeout(() => {
+          this.toaster.show('You have been logged out successfully');
+        });
+      });
   }
 
   signIn(): void {
@@ -47,7 +63,7 @@ export class LoginComponent implements OnInit {
       .subscribe((currentSession: Session) => {
         if (currentSession && currentSession.token) {
           this.auth.session = currentSession;
-          this.router.navigate([this.defaultRedirectUrl]);
+          this.router.navigate(['.' + this.redirectUrl]);
           if (this.rememberMe) {
             localStorage.setItem(SURABI_USER_NAME, this.userName);
           }
