@@ -40,14 +40,13 @@ usersApiApp.use(function (req, res, next) {
 
 //validate the auth tokens and throw error if invalid
 usersApiApp.use(validateToken().unless({
-  path: ['/api/sessions/'],
+  path: config.apiVersions.map((version) => `/api/v${version}/sessions/`),
   method: 'OPTIONS'
 }));
 
 //update modifier fields like createdBy, CreatedOn, modifiedBy, ModifiedOn
-
 usersApiApp.use(updateModifierFields().unless({
-  path:['/api/sessions/'],
+  path: config.apiVersions.map((version) => `/api/v${version}/sessions/`),
   method: ['OPTIONS', 'GET', 'DELETE']
 }));
 

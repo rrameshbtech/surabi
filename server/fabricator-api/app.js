@@ -14,7 +14,7 @@ mongoose.Promise = require('bluebird');
 var dbOptions = {
   useMongoClient: true
 };
-var db = mongoose.connect('mongodb://localhost/Fabricator', dbOptions);
+var db = mongoose.connect(config.connection.mongoDB, dbOptions);
 
 
 //import the models requried

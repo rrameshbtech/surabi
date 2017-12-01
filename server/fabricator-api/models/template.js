@@ -14,8 +14,8 @@ var templateModel = new Schema({
     description: {
       type: String
     },
-    tagName: {
-      type: String
+    categories: {
+      type: [String]
     },
     createdBy: {
       type: String
