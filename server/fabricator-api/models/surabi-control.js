@@ -3,12 +3,12 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var surabiControlModel = new Schema({
-  id: {
-    type: String
-  },
   name: {
     type: String,
     unique: true
+  },
+  displayName:{
+    type: String
   },
   icon: {
     type: String
@@ -37,3 +37,5 @@ var surabiControlModel = new Schema({
     default: Date.now
   }
 });
+
+module.exports = mongoose.model('SurabiControl', surabiControlModel);
