@@ -1,9 +1,9 @@
 'use strict';
-var surabiControlRouter = function (SurabiControl) {
+var SurabiControlRouter = function (SurabiControl) {
 
   var express = require('express'),
   router = express.Router(),
-  controller = require('../controllers/surabiControlController')(SurabiControl);
+  controller = require('../controllers/surabi-control.controller')(SurabiControl);
 
   //Routes handing multiple items
   router.route('/')
@@ -12,4 +12,4 @@ var surabiControlRouter = function (SurabiControl) {
   return router;
 }
 
-module.exports = surabiControlRouter;
+module.exports = SurabiControlRouter;

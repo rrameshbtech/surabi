@@ -1,5 +1,5 @@
 'use strict';
-var surabiControlController = function (SurabiControl) {
+var SurabiControlController = function (SurabiControl) {
 
 
   function getSurabiControls(req, res) {
@@ -59,4 +59,4 @@ var surabiControlController = function (SurabiControl) {
 
 }
 
-module.exports = surabiControlController;
+module.exports = SurabiControlController;

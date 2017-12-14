@@ -51,8 +51,8 @@ usersApiApp.use(updateModifierFields().unless({
 }));
 
 //import & assign the routes
-var userRouter = require('./routes/userRouter')(User),
-  sessionRouter = require('./routes/sessionRouter')(Session, User);
+var userRouter = require('./routes/user.router')(User),
+  sessionRouter = require('./routes/session.router')(Session, User);
 
 usersApiApp.use(`/api/v${config.version}/users`, userRouter);
 usersApiApp.use(`/api/v${config.version}/sessions`, sessionRouter);

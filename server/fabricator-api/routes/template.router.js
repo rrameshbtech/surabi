@@ -1,8 +1,8 @@
 'use strict';
-var templateRouter = function (Template) {
+var TemplateRouter = function (Template) {
   var express = require('express'),
   router = express.Router(),
-  controller = require('../controllers/templateController')(Template);
+  controller = require('../controllers/template.controller')(Template);
 
   ////Routes handing multiple items
   //router.route('/')
@@ -11,4 +11,4 @@ var templateRouter = function (Template) {
   return router;
 }
 
-module.exports = templateRouter;
+module.exports = TemplateRouter;

@@ -45,8 +45,8 @@ fabricatorApiApp.use(validateToken());
 fabricatorApiApp.use(updateModifierFields());
 
 //import & assign the routes
-var templateRouter = require('./routes/templateRouter')(Template),
-  surabiControlRouter = require('./routes/surabiControlRouter')(SurabiControl);
+var templateRouter = require('./routes/template.router')(Template),
+  surabiControlRouter = require('./routes/surabi-control.router')(SurabiControl);
 
 fabricatorApiApp.use(`/api/v${config.version}/templates`, templateRouter);
 fabricatorApiApp.use(`/api/v${config.version}/surabicontrols`, surabiControlRouter);
