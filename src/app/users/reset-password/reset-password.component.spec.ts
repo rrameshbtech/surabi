@@ -9,9 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
-import { AuthService } from '../../shared/auth/auth.service';
+import { AuthService } from '@app/core/auth/auth.service';
 import { ToastService } from '../../shared/toast.service';
-import { ExceptionService } from '../../shared/exception.service';
+import { ExceptionService } from '@app/core/exception.service';
 import { ResetPasswordComponent } from './reset-password.component';
 import { UserService } from '../services/user.service';
 

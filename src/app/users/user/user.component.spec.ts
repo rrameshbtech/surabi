@@ -6,9 +6,9 @@ import { MaterialModule } from '../../material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 
-import { AuthService } from '../../shared/auth/auth.service';
+import { AuthService } from '@app/core/auth/auth.service';
 import { ToastService } from '../../shared/toast.service';
-import { ExceptionService } from '../../shared/exception.service';
+import { ExceptionService } from '@app/core/exception.service';
 import { CommonDialogService } from '../../shared/common-dialog.service';
 import { UserService } from '../services/user.service';
 import { UserFilterComponent } from './user-filter.component';

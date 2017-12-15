@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
-import { AuthGuard } from '../shared/auth/auth.guard';
+import { AuthGuard } from '@app/core/auth/auth.guard';
 
 const routes: Routes = [
   {

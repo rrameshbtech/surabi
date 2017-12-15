@@ -6,8 +6,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import { AuthService } from '../auth/auth.service';
-import { ExceptionService } from '../exception.service';
+import { AuthService } from '@app/core/auth/auth.service';
+import { ExceptionService } from '@app/core/exception.service';
 import { ToastService } from '../toast.service';
 import { HeaderComponent } from './header.component';
 import { environment } from '../../../environments/environment';

@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/filter';
 
 import { Session } from '../../models/session.model';
-import { AuthService } from '../../shared/auth/auth.service';
+import { AuthService } from '@app/core/auth/auth.service';
 import { ToastService } from '../../shared/toast.service';
 
 export const SURABI_USER_NAME = 'surabi-user-name';

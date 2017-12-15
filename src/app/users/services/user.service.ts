@@ -8,7 +8,7 @@ import 'rxjs/add/operator/finally';
 
 import { User } from '../../models/user.model';
 import { SearchResult } from '../../models/search-result.model';
-import { ExceptionService } from '../../shared/exception.service';
+import { ExceptionService } from '@app/core/exception.service';
 import { environment } from '../../../environments/environment';
 
 @Injectable()

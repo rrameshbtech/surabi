@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { UserService } from '../services/user.service';
 import { ToastService } from '../../shared/toast.service';
-import { AuthService } from '../../shared/auth/auth.service';
+import { AuthService } from '@app/core/auth/auth.service';
 
 @Component({
   selector: 'srb-reset-password',

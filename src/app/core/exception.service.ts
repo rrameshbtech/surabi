@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/observable/of';
-import { ToastService } from './toast.service';
+import { ToastService } from '../shared/toast.service';
 
 @Injectable()
 export class ExceptionService {

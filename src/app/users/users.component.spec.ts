@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material.module';
 
 import { AuthService } from '../shared/auth/auth.service';
-import { ExceptionService } from '../shared/exception.service';
+import { ExceptionService } from '@app/core/exception.service';
 import { ToastService } from '../shared/toast.service';
 import { HeaderComponent } from '../shared/header/header.component';
 import { FooterComponent } from '../shared/footer/footer.component';

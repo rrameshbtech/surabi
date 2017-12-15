@@ -10,9 +10,9 @@ import { LoginComponent } from './login.component';
 import { PublicHeaderComponent } from '../../shared/public-header/public-header.component';
 import { PublicFooterComponent } from '../../shared/public-footer/public-footer.component';
 import { Session } from '../../models/session.model';
-import { AuthService } from '../../shared/auth/auth.service';
+import { AuthService } from '@app/core/auth/auth.service';
 import { ToastService } from '../../shared/toast.service';
-import { ExceptionService } from '../../shared/exception.service';
+import { ExceptionService } from '@app/core/exception.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
