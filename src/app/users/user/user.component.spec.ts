@@ -2,14 +2,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BusyModule } from 'angular2-busy';
 import { FormsModule } from '@angular/forms';
-import { MaterialModule } from '../../material.module';
+import { MaterialModule } from '@app/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 
 import { AuthService } from '@app/core/auth/auth.service';
-import { ToastService } from '../../shared/toast.service';
+import { ToastService } from '@app/shared/toast.service';
 import { ExceptionService } from '@app/core/exception.service';
-import { CommonDialogService } from '../../shared/common-dialog.service';
+import { CommonDialogService } from '@app/shared/common-dialog.service';
 import { UserService } from '../services/user.service';
 import { UserFilterComponent } from './user-filter.component';
 import { UserViewDialogComponent } from './user-view-dialog.component';

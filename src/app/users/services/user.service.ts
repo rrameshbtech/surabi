@@ -6,10 +6,10 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
 
-import { User } from '../../models/user.model';
-import { SearchResult } from '../../models/search-result.model';
+import { User } from '@app/models/user.model';
+import { SearchResult } from '@app/models/search-result.model';
 import { ExceptionService } from '@app/core/exception.service';
-import { environment } from '../../../environments/environment';
+import { environment } from '@environments/environment';
 
 @Injectable()
 export class UserService {

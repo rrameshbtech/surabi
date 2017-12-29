@@ -35,7 +35,8 @@ import { CommonDialogService } from './common-dialog.service';
     ConfirmDialogComponent
   ],
   providers: [
-    ToastService
+    ToastService,
+    CommonDialogService
   ],
   entryComponents:[
     ConfirmDialogComponent

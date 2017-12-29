@@ -3,14 +3,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BusyModule } from 'angular2-busy';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
-import { MaterialModule } from '../../material.module';
+import { MaterialModule } from '@app/material.module';
 import { HttpClientModule } from '@angular/common/http';
 
 
-import { HeaderComponent } from '../../shared/header/header.component';
-import { FooterComponent } from '../../shared/footer/footer.component';
+import { HeaderComponent } from '@app/shared/header/header.component';
+import { FooterComponent } from '@app/shared/footer/footer.component';
 import { AuthService } from '@app/core/auth/auth.service';
-import { ToastService } from '../../shared/toast.service';
+import { ToastService } from '@app/shared/toast.service';
 import { ExceptionService } from '@app/core/exception.service';
 import { ResetPasswordComponent } from './reset-password.component';
 import { UserService } from '../services/user.service';

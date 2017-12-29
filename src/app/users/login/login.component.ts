@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/filter';
 
-import { Session } from '../../models/session.model';
+import { Session } from '@app/models/session.model';
 import { AuthService } from '@app/core/auth/auth.service';
-import { ToastService } from '../../shared/toast.service';
+import { ToastService } from '@app/shared/toast.service';
 
 export const SURABI_USER_NAME = 'surabi-user-name';
 
