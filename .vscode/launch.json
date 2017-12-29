@@ -8,7 +8,7 @@
             "type": "node2",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}\\server\\users-api\\app.js",
+            "program": "${workspaceRoot}\\server\\fabricator-api\\app.js",
             "cwd": "${workspaceRoot}"
         },
         {

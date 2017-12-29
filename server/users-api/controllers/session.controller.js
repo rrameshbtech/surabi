@@ -1,8 +1,8 @@
 'use strict';
 
-var sessionController = function (Session, User) {
+var SessionController = function (Session, User) {
 
-  var userController = require('./userController')(User),
+  var userController = require('./user.controller')(User),
     jwt = require('jsonwebtoken'),
     config = require('../utilities/config');
 
@@ -80,4 +80,4 @@ var sessionController = function (Session, User) {
 
 };
 
-module.exports = sessionController;
+module.exports = SessionController;

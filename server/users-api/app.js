@@ -40,20 +40,19 @@ usersApiApp.use(function (req, res, next) {
 
 //validate the auth tokens and throw error if invalid
 usersApiApp.use(validateToken().unless({
-  path: ['/api/sessions/'],
+  path: config.apiVersions.map((version) => `/api/v${version}/sessions/`),
   method: 'OPTIONS'
 }));
 
 //update modifier fields like createdBy, CreatedOn, modifiedBy, ModifiedOn
-
 usersApiApp.use(updateModifierFields().unless({
-  path:['/api/sessions/'],
+  path: config.apiVersions.map((version) => `/api/v${version}/sessions/`),
   method: ['OPTIONS', 'GET', 'DELETE']
 }));
 
 //import & assign the routes
-var userRouter = require('./routes/userRouter')(User),
-  sessionRouter = require('./routes/sessionRouter')(Session, User);
+var userRouter = require('./routes/user.router')(User),
+  sessionRouter = require('./routes/session.router')(Session, User);
 
 usersApiApp.use(`/api/v${config.version}/users`, userRouter);
 usersApiApp.use(`/api/v${config.version}/sessions`, sessionRouter);

@@ -1,10 +1,10 @@
 'use strict';
 
 var express = require('express');
-var userRouter = function (User) {
+var UserRouter = function (User) {
 
   var router = express.Router(),
-    userController = require('../controllers/userController')(User);
+    userController = require('../controllers/user.controller')(User);
 
   //Routes handling multiple users
   router.route('/')
@@ -42,4 +42,4 @@ var userRouter = function (User) {
   return router;
 };
 
-module.exports = userRouter;
+module.exports = UserRouter;

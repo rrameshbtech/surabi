@@ -1,9 +1,9 @@
 'use strict';
 var express = require('express');
 
-var sessionRouter = function (Session, User) {
+var SessionRouter = function (Session, User) {
 
-  var sessionController = require('../controllers/sessionController')(Session, User),
+  var sessionController = require('../controllers/session.controller')(Session, User),
     router = express.Router();
 
   router.route('/')
@@ -13,4 +13,4 @@ var sessionRouter = function (Session, User) {
   return router;
 };
 
-module.exports = sessionRouter;
+module.exports = SessionRouter;

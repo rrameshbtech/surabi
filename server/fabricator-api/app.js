@@ -7,6 +7,10 @@ var express = require("express"),
   validateToken = require('./middlewares/validate-auth-token'),
   updateModifierFields = require('./middlewares/update-modifying-fields');
 
+//import the models requried
+var Template = require('./models/template'),
+  SurabiControl = require('./models/surabi-control');
+
 //Assigning 3rd party promise, as mongoose promise is depricated
 mongoose.Promise = require('bluebird');
 
@@ -14,12 +18,7 @@ mongoose.Promise = require('bluebird');
 var dbOptions = {
   useMongoClient: true
 };
-var db = mongoose.connect('mongodb://localhost/Fabricator', dbOptions);
-
-
-//import the models requried
-var Template = require('./models/template'),
-  SurabiControl = require('./models/surabiControl');
+var db = mongoose.connect(config.connection.mongoDB, dbOptions);
 
 //configure the user service
 var fabricatorApiApp = express(),
@@ -46,11 +45,11 @@ fabricatorApiApp.use(validateToken());
 fabricatorApiApp.use(updateModifierFields());
 
 //import & assign the routes
-var templateRouter = require('./routes/templateRouter')(User),
-  surabiControlRouter = require('./routes/surabiControlRouter')(Session, User);
+var templateRouter = require('./routes/template.router')(Template),
+  surabiControlRouter = require('./routes/surabi-control.router')(SurabiControl);
 
 fabricatorApiApp.use(`/api/v${config.version}/templates`, templateRouter);
-fabricatorApiApp.use(`/api/v${config.version}/surabiControls`, surabiControlRouter);
+fabricatorApiApp.use(`/api/v${config.version}/surabicontrols`, surabiControlRouter);
 
 //Provide dashboard for the users api to let the users know about the list of api end points
 fabricatorApiApp.get('/', function getUserAPIDetails(req, res) {

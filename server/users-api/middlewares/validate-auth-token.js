@@ -3,7 +3,7 @@ module.exports = function () {
     config = require('../utilities/config'),
     Session = require('../models/session'),
     User = require('../models/user'),
-    SessionController = require('../controllers/sessionController')(Session, User);
+    sessionController = require('../controllers/session.controller')(Session, User);
 
   var validateToken = function validateAuthToken(req, res, next) {
 
@@ -23,7 +23,7 @@ module.exports = function () {
         res.status(401).send(err);
         return;
       }
-      SessionController.getSessionById(tokenData.sessionId, function (error, currentSession) {
+      sessionController.getSessionById(tokenData.sessionId, function (error, currentSession) {
         if (error) {
           res.status(401).send('Current session is expired or invalid.');
         }

@@ -1,6 +1,6 @@
 'use strict';
 
-var userController = function (User) {
+var UserController = function (User) {
 
   var passwordGenerator = require('generate-password');
 
@@ -143,4 +143,4 @@ var userController = function (User) {
 
 };
 
-module.exports = userController;
+module.exports = UserController;

@@ -9,14 +9,9 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
 import { MaterialModule } from '../material.module';
-import { ExceptionService } from './exception.service';
 import { ToastService } from './toast.service';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { CommonDialogService } from './common-dialog.service';
-import { AuthGuard } from './auth/auth.guard';
-import { HttpResponseInterceptor } from './auth/http-response-interceptor.service';
-import { AuthTokenInterceptor } from './auth/auth-token-interceptor.service';
-import { AuthService } from './auth/auth.service';
 
 @NgModule({
   imports: [
@@ -40,13 +35,8 @@ import { AuthService } from './auth/auth.service';
     ConfirmDialogComponent
   ],
   providers: [
-    ExceptionService,
     ToastService,
-    CommonDialogService,
-    AuthGuard,
-    AuthService,
-    { provide: HTTP_INTERCEPTORS, useClass: HttpResponseInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true }
+    CommonDialogService
   ],
   entryComponents:[
     ConfirmDialogComponent

@@ -13,6 +13,7 @@ import { UserService } from './services/user.service';
 import { UserComponent } from './user/user.component';
 import { UsersComponent } from './users.component';
 
+import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { UserFilterComponent } from './user/user-filter.component';
 import { UserViewDialogComponent } from './user/user-view-dialog.component';
@@ -30,7 +31,8 @@ import { EqualValiadtorDirective } from './reset-password/equal-validator.direct
 
     MaterialModule,
     UsersRoutingModule,
-    SharedModule
+    SharedModule,
+    CoreModule
   ],
   declarations: [
     LoginComponent,

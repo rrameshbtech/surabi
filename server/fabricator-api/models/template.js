@@ -3,7 +3,6 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var templateModel = new Schema({
-  {
     id: {
       type: String
     },
@@ -14,8 +13,8 @@ var templateModel = new Schema({
     description: {
       type: String
     },
-    tagName: {
-      type: String
+    categories: {
+      type: [String]
     },
     createdBy: {
       type: String
@@ -31,6 +30,6 @@ var templateModel = new Schema({
       type: Date,
       default: Date.now
     }
-
-  }
 });
+
+module.exports = mongoose.model('Template', templateModel);

@@ -4,12 +4,12 @@ import { MatPaginator, MatSort, MatSnackBar } from '@angular/material';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 import { Subscription } from 'rxjs/subscription';
 
-import { User } from '../../models/user.model';
+import { User } from '@app/models/user.model';
 import { UserDataSource } from './user-data-source.model';
 import { UserService } from '../services/user.service';
-import { ToastService } from '../../shared/toast.service';
-import { CommonDialogService } from '../../shared/common-dialog.service';
-import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
+import { ToastService } from '@app/shared/toast.service';
+import { CommonDialogService } from '@app/shared/common-dialog.service';
+import { ConfirmDialogComponent } from '@app/shared/confirm-dialog/confirm-dialog.component';
 import { UserFilterComponent } from './user-filter.component';
 import { UserViewDialogComponent } from './user-view-dialog.component';
 
